@@ -77,7 +77,7 @@ open a machine terminal in your `Repos` folder:
 
 ```shell
 # Replace username with YOUR GitHub username.
-git clone https://github.com/username/bintel-02-mining
+git clone https://github.com/nwmgraspr/bintel-02-mining
 
 cd bintel-02-mining
 code .
