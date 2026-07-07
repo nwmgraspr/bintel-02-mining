@@ -1,0 +1,9 @@
+CustomerID,Name,Country,SignupDate,LoyaltyTier
+C001,Alice Johnson,USA,2025-01-10,Gold
+C002,Brian Smith,USA,2025-02-15,Silver
+C003,Chen Wei,Canada,2025-03-20,Bronze
+C004,Diana Lopez,Mexico,2025-04-05,Silver
+C005,Emma Brown,USA,2025-05-18,Gold
+C006,Faisal Khan,UK,2025-06-01,Bronze
+C007,Grace Kim,South Korea,2025-06-10,Silver
+C008,Hassan Ali,USA,2025-06-25,Bronze
