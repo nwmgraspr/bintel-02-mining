@@ -10,23 +10,23 @@ uv run python -m bizintel.mining_ecommerce
 from pathlib import Path
 from typing import Final
 
-import pandas as pd
-import matplotlib.pyplot as plt
-
 from datafun_toolkit.logger import log_path
+import matplotlib.pyplot as plt
+import pandas as pd
+
 from bizintel.utils_data import (
-    load_data,
-    inspect_basic,
     check_quality,
+    inspect_basic,
+    load_data,
     summarize_numeric,
 )
 from bizintel.utils_logger import LOG, log_header
 from bizintel.utils_viz import plot_line
 
-
 # =========================
 # AUTO DATA GENERATION
 # =========================
+
 
 def create_sample_data(data_dir: Path) -> None:
     """Create sample CSV files if missing (self-contained project)."""
@@ -100,6 +100,7 @@ WEB_FILE: Final[Path] = DATA_RAW / "web_activity.csv"
 # ANALYSIS FUNCTIONS
 # =========================
 
+
 def plot_order_distribution(df_orders: pd.DataFrame) -> None:
     LOG.info("Plotting order distribution")
 
@@ -165,6 +166,7 @@ def summarize(df_customers, df_orders, df_web) -> None:
 # =========================
 # MAIN PIPELINE
 # =========================
+
 
 def main() -> None:
     log_header(LOG, "E-COMMERCE BI")
