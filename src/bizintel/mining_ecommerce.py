@@ -10,8 +10,8 @@ uv run python -m bizintel.mining_ecommerce
 from pathlib import Path
 from typing import Final
 
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 
 from datafun_toolkit.logger import log_path
 from bizintel.utils_data import (
