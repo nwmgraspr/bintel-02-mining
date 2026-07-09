@@ -1502,3 +1502,85 @@ max          2400.00     1199.00    2099.00   404.00        3.00
 2026-07-07 17:25:04 | INFO | BI | ========================
 2026-07-07 17:25:04 | INFO | BI | Executed successfully!
 2026-07-07 17:25:04 | INFO | BI | ========================
+2026-07-07 17:59:44 | INFO | BI | === RUN START ===
+2026-07-07 17:59:44 | INFO | BI | project=E-COMMERCE BI
+2026-07-07 17:59:44 | INFO | BI | repo_dir=bintel-02-mining
+2026-07-07 17:59:44 | INFO | BI | python=3.14.6
+2026-07-07 17:59:44 | INFO | BI | os=Windows 10
+2026-07-07 17:59:44 | INFO | BI | shell=powershell
+2026-07-07 17:59:44 | INFO | BI | cwd=.
+2026-07-07 17:59:44 | INFO | BI | github_actions=False
+2026-07-07 17:59:44 | INFO | BI | Starting workflow...
+2026-07-07 17:59:44 | INFO | BI | Customers: = data\raw\customers.csv
+2026-07-07 17:59:44 | INFO | BI | Orders: = data\raw\orders.csv
+2026-07-07 17:59:44 | INFO | BI | Web: = data\raw\web_activity.csv
+2026-07-07 17:59:44 | INFO | BI | Loading customers from data\raw\customers.csv
+2026-07-07 17:59:44 | INFO | BI | Loaded: 8 rows, 5 columns
+2026-07-07 17:59:44 | INFO | BI | Loading orders from data\raw\orders.csv
+2026-07-07 17:59:44 | INFO | BI | Loaded: 10 rows, 5 columns
+2026-07-07 17:59:44 | INFO | BI | Loading web from data\raw\web_activity.csv
+2026-07-07 17:59:44 | INFO | BI | Loaded: 10 rows, 5 columns
+2026-07-07 17:59:44 | INFO | BI | Inspecting customers
+2026-07-07 17:59:44 | INFO | BI |   Columns: ['CustomerID', 'Name', 'Country', 'SignupDate', 'LoyaltyTier']
+2026-07-07 17:59:44 | INFO | BI |   Shape:   8 rows x 5 columns
+2026-07-07 17:59:44 | DEBUG | BI | 
+  CustomerID           Name Country  SignupDate LoyaltyTier
+0       C001  Alice Johnson     USA  2025-01-10        Gold
+1       C002    Brian Smith     USA  2025-02-15      Silver
+2       C003       Chen Wei  Canada  2025-03-20      Bronze
+3       C004    Diana Lopez  Mexico  2025-04-05      Silver
+4       C005     Emma Brown     USA  2025-05-18        Gold
+
+2026-07-07 17:59:44 | INFO | BI | Inspecting orders
+2026-07-07 17:59:44 | INFO | BI |   Columns: ['OrderID', 'CustomerID', 'OrderDate', 'OrderAmount', 'ProductCategory']
+2026-07-07 17:59:44 | INFO | BI |   Shape:   10 rows x 5 columns
+2026-07-07 17:59:44 | DEBUG | BI | 
+  OrderID CustomerID   OrderDate  OrderAmount ProductCategory
+0   O1001       C001  2026-01-05       120.50     Electronics
+1   O1002       C002  2026-01-10        35.99           Books
+2   O1003       C003  2026-01-12        89.99            Home
+3   O1004       C001  2026-02-01       220.00     Electronics
+4   O1005       C004  2026-02-15        45.00         Fashion
+
+2026-07-07 17:59:44 | INFO | BI | Inspecting web
+2026-07-07 17:59:44 | INFO | BI |   Columns: ['SessionID', 'CustomerID', 'VisitDate', 'PagesViewed', 'TimeSpentMinutes']
+2026-07-07 17:59:44 | INFO | BI |   Shape:   10 rows x 5 columns
+2026-07-07 17:59:44 | DEBUG | BI | 
+  SessionID CustomerID   VisitDate  PagesViewed  TimeSpentMinutes
+0      S001       C001  2026-01-05           12                18
+1      S002       C002  2026-01-10            5                 7
+2      S003       C003  2026-01-12            8                12
+3      S004       C001  2026-02-01           20                30
+4      S005       C004  2026-02-15            6                10
+
+2026-07-07 17:59:44 | INFO | BI | Quality check: customers
+2026-07-07 17:59:44 | INFO | BI |   Total missing values: 0
+2026-07-07 17:59:44 | INFO | BI |   Duplicate rows: 0
+2026-07-07 17:59:44 | INFO | BI | Quality check: orders
+2026-07-07 17:59:44 | INFO | BI |   Total missing values: 0
+2026-07-07 17:59:44 | INFO | BI |   Duplicate rows: 0
+2026-07-07 17:59:44 | INFO | BI | Quality check: web
+2026-07-07 17:59:44 | INFO | BI |   Total missing values: 0
+2026-07-07 17:59:44 | INFO | BI |   Duplicate rows: 0
+2026-07-07 17:59:44 | INFO | BI | Numeric summary: orders
+2026-07-07 17:59:44 | INFO | BI | 
+       OrderAmount
+count        10.00
+mean        115.75
+std          90.41
+min          25.00
+25%          48.75
+50%          94.99
+75%         143.19
+max         310.25
+2026-07-07 17:59:44 | INFO | BI | Plotting order distribution
+2026-07-07 17:59:44 | INFO | BI | Plotting revenue trend
+2026-07-07 17:59:44 | INFO | BI | Creating chart: Monthly Revenue Trend
+2026-07-07 17:59:44 | INFO | BI | Plotting engagement vs spending
+2026-07-07 17:59:44 | INFO | BI | ========================
+2026-07-07 17:59:44 | INFO | BI | SUMMARY
+2026-07-07 17:59:44 | INFO | BI | ========================
+2026-07-07 17:59:44 | INFO | BI | Customers: (8, 5)
+2026-07-07 17:59:44 | INFO | BI | Orders:    (10, 5)
+2026-07-07 17:59:44 | INFO | BI | Web:       (10, 5)
+2026-07-07 17:59:50 | INFO | BI | Done.
