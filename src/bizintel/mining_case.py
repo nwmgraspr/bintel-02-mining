@@ -296,18 +296,6 @@ def main() -> None:
     summarize_numeric(df_products, "products")
     summarize_numeric(df_sales, "sales")
    
-    LOG.info("CALL a function to summarize KPIs........")
-    summarize_kpis(df_sales)
-
-    LOG.info("CALL a function to summarize date range........")
-    summarize_date_range(df_sales)
-
-    LOG.info("CALL a function to summarize top customers........")
-    summarize_top_customers(df_sales)
-
-    LOG.info("CALL a function to plot sales by category........")
-    plot_sales_by_category(df_products, df_sales)
-
     LOG.info("CALL a function to plot price distribution........")
     plot_price_distribution(df_products)
 
