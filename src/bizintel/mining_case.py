@@ -204,7 +204,53 @@ def plot_sales_trend(df_sales: pd.DataFrame) -> None:
     )
 
     LOG.info("Sales trend chart created")
+    
+def plot_sales_by_product(df_sales: pd.DataFrame) -> None:
+    """Plot total sales by product."""
 
+    LOG.info("Plotting sales by product")
+
+    df = df_sales.copy()
+    df["SaleAmount"] = pd.to_numeric(df["SaleAmount"], errors="coerce")
+
+    sales = (
+        df.groupby("ProductID")["SaleAmount"]
+        .sum()
+        .sort_values(ascending=False)
+    )
+
+    _, ax = plt.subplots(figsize=(10, 5))
+    sales.plot(kind="bar", ax=ax, color="cornflowerblue")
+
+    ax.set_title("Total Sales by Product")
+    ax.set_xlabel("Product ID")
+    ax.set_ylabel("Sales Amount ($)")
+
+    plt.tight_layout()
+
+def plot_sales_pie(df_sales: pd.DataFrame) -> None:
+    """Plot sales distribution by product."""
+
+    LOG.info("Plotting sales distribution")
+
+    df = df_sales.copy()
+    df["SaleAmount"] = pd.to_numeric(df["SaleAmount"], errors="coerce")
+
+    sales = (
+        df.groupby("ProductID")["SaleAmount"]
+        .sum()
+    )
+
+    _, ax = plt.subplots(figsize=(8, 8))
+    ax.pie(
+        sales,
+        labels=sales.index,
+        autopct="%1.1f%%",
+        startangle=90,
+    )
+
+    ax.set_title("Sales Distribution by Product")
+    plt.tight_layout()
 
 # === Section 2.3 DEFINE A SUMMARIZE FUNCTION ===
 
