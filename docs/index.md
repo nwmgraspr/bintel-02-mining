@@ -102,7 +102,7 @@ Display at least one chart or screenshot showing your work.
 
 ![Engagement VS Spending](images/Figure_3.png)
 
-![Monthly Revenue Trend](images/Figur_4.png)
+![Monthly Revenue Trend](images/Figure_4.png)
 
 ![Order Amount Distribution](images/Figure_5.png)
 
