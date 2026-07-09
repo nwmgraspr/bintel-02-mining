@@ -26,9 +26,9 @@ Describe your small technical modification to the example project.
 I added two additional charts. The first chart shows total sales amount by product. Comparing sales by product helps identify which products generate the most revenue. This supports decisions about inventory planning, product strategy, and sales priorities. The second chart shows the sales distribution among top products. A pie chart shows the percentage contribution of each product to total sales. This helps identify products that have the largest impact on overall revenue.
 Include:
 
-- What you changed: I changed the number of output charts from two to four. 
+- What you changed: I changed the number of output charts from two to four.
 - Why you chose that change: I chose that because I wanted to add another meaning to the project that can help in business decisions.
-- How you verified that it worked: The project ran successfully and generated the expected result. 
+- How you verified that it worked: The project ran successfully and generated the expected result.
 - What result, output, chart, metric, or behavior confirmed the change: The two additional charts confirmed the change.
 
 Compared with the example project,
@@ -96,7 +96,7 @@ Include:
 - What results or insights you produced: The project provided insights into customer behavior, sales trends, and the relationship between website engagement and spending through integrated data analysis and visualizations.
 - What you learned: I learned how to integrate multiple related datasets, automate sample data generation, analyze customer engagement alongside sales data, and use visualizations to identify business trends and customer behavior patterns.
 - What kinds of real business problems this approach could help answer: This approach could help businesses answer questions such as which customers are most valuable, how website engagement influences purchasing behavior, what sales trends emerge over time, and where marketing or customer retention efforts could be improved to increase revenue.
-  
+
 
 Display at least one chart or screenshot showing your work.
 
@@ -105,4 +105,3 @@ Display at least one chart or screenshot showing your work.
 ![Monthly Revenue Trend](images/Figure_4.png)
 
 ![Order Amount Distribution](images/Figure_5.png)
-
