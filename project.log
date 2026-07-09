@@ -1689,3 +1689,1904 @@ min             1.00     1000.00    2000.00   401.00        0.00
 75%          1800.25     1132.00    2074.00   404.00        2.00
 max          2400.00     1199.00    2099.00   404.00        3.00
 2026-07-08 19:53:09 | INFO | BI | CALL a function to summarize KPIs........
+2026-07-08 19:58:42 | INFO | BI | === RUN START ===
+2026-07-08 19:58:42 | INFO | BI | project=BI
+2026-07-08 19:58:42 | INFO | BI | repo_dir=bintel-02-mining
+2026-07-08 19:58:42 | INFO | BI | python=3.14.6
+2026-07-08 19:58:42 | INFO | BI | os=Windows 10
+2026-07-08 19:58:42 | INFO | BI | shell=powershell
+2026-07-08 19:58:42 | INFO | BI | cwd=.
+2026-07-08 19:58:42 | INFO | BI | github_actions=False
+2026-07-08 19:58:42 | INFO | BI | ========================
+2026-07-08 19:58:42 | INFO | BI | START main()
+2026-07-08 19:58:42 | INFO | BI | ========================
+2026-07-08 19:58:42 | INFO | BI | Raw data:  = data\raw
+2026-07-08 19:58:42 | INFO | BI | Customers: = data\raw\customers_data.csv
+2026-07-08 19:58:42 | INFO | BI | Products:  = data\raw\products_data.csv
+2026-07-08 19:58:42 | INFO | BI | Sales:     = data\raw\sales_data.csv
+2026-07-08 19:58:42 | INFO | BI | CALL a function to load each dataset.............
+2026-07-08 19:58:42 | INFO | BI | Loading customers from data\raw\customers_data.csv
+2026-07-08 19:58:42 | INFO | BI | Loaded: 201 rows, 4 columns
+2026-07-08 19:58:42 | INFO | BI | Loading products from data\raw\products_data.csv
+2026-07-08 19:58:42 | INFO | BI | Loaded: 100 rows, 4 columns
+2026-07-08 19:58:42 | INFO | BI | Loading sales from data\raw\sales_data.csv
+2026-07-08 19:58:42 | INFO | BI | Loaded: 2400 rows, 7 columns
+2026-07-08 19:58:42 | INFO | BI | CALL a function to inspect each dataset..........
+2026-07-08 19:58:42 | INFO | BI | Inspecting customers
+2026-07-08 19:58:42 | INFO | BI |   Columns: ['CustomerID', 'Name', 'Region', 'JoinDate']
+2026-07-08 19:58:42 | INFO | BI |   Shape:   201 rows x 4 columns
+2026-07-08 19:58:42 | DEBUG | BI | 
+   CustomerID           Name   Region    JoinDate
+0        1000   Robert Gomez     West  2024-02-25
+1        1001     John Silva     East  2020-12-01
+2        1002  Mark Marshall  Central  2020-08-08
+3        1003  David Brennan    North  2020-05-21
+4        1004  Kerry Collins    North  2023-09-12
+
+2026-07-08 19:58:42 | INFO | BI | Inspecting products
+2026-07-08 19:58:42 | INFO | BI |   Columns: ['ProductID', 'ProductName', 'Category', 'UnitPrice']
+2026-07-08 19:58:42 | INFO | BI |   Shape:   100 rows x 4 columns
+2026-07-08 19:58:42 | DEBUG | BI | 
+   ProductID           ProductName     Category  UnitPrice
+0       2000    Electronics-Signal  Electronics     969.31
+1       2001     Electronics-Boost  Electronics     412.35
+2       2002         Office-Family       Office     866.00
+3       2003  Electronics-Training  Electronics     385.18
+4       2004          Office-Where       Office     927.25
+
+2026-07-08 19:58:42 | INFO | BI | Inspecting sales
+2026-07-08 19:58:42 | INFO | BI |   Columns: ['TransactionID', 'SaleDate', 'CustomerID', 'ProductID', 'StoreID', 'CampaignID', 'SaleAmount']
+2026-07-08 19:58:42 | INFO | BI |   Shape:   2400 rows x 7 columns
+2026-07-08 19:58:42 | DEBUG | BI | 
+   TransactionID    SaleDate  CustomerID  ProductID  StoreID  CampaignID SaleAmount
+0              1  2025-01-09        1020       2023      401         0.0     643.02
+1              2  2024-07-10        1034       2091      404         2.0     529.24
+2              3  2025-03-22        1087       2035      403         3.0    4313.72
+3              4  2024-12-27        1186       2015      404         NaN    1275.85
+4              5  2025-04-21        1049       2005      402         0.0    1739.64
+
+2026-07-08 19:58:42 | INFO | BI | CALL a function to check data quality of each dataset........
+2026-07-08 19:58:42 | INFO | BI | Quality check: customers
+2026-07-08 19:58:42 | INFO | BI |   Total missing values: 0
+2026-07-08 19:58:42 | INFO | BI |   Duplicate rows: 1
+2026-07-08 19:58:42 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-08 19:58:42 | INFO | BI | Quality check: products
+2026-07-08 19:58:42 | INFO | BI |   Total missing values: 0
+2026-07-08 19:58:42 | INFO | BI |   Duplicate rows: 0
+2026-07-08 19:58:42 | INFO | BI | Quality check: sales
+2026-07-08 19:58:42 | INFO | BI |   Total missing values: 193
+2026-07-08 19:58:42 | WARNING | BI |   Missing by column:
+CampaignID    193
+dtype: int64
+2026-07-08 19:58:42 | INFO | BI |   Duplicate rows: 0
+2026-07-08 19:58:42 | INFO | BI | CALL a function to summarize numeric columns in each dataset........
+2026-07-08 19:58:42 | INFO | BI | Numeric summary: customers
+2026-07-08 19:58:42 | INFO | BI | 
+       CustomerID
+count      201.00
+mean      1099.03
+std         58.12
+min       1000.00
+25%       1049.00
+50%       1099.00
+75%       1149.00
+max       1199.00
+2026-07-08 19:58:42 | INFO | BI | Numeric summary: products
+2026-07-08 19:58:42 | INFO | BI | 
+       ProductID  UnitPrice
+count     100.00     100.00
+mean     2049.50     507.77
+std        29.01     290.80
+min      2000.00      13.51
+25%      2024.75     255.53
+50%      2049.50     496.39
+75%      2074.25     771.28
+max      2099.00     976.44
+2026-07-08 19:58:42 | INFO | BI | Numeric summary: sales
+2026-07-08 19:58:42 | INFO | BI | 
+       TransactionID  CustomerID  ProductID  StoreID  CampaignID
+count        2400.00     2400.00    2400.00  2400.00     2207.00
+mean         1200.50     1086.75    2049.07   402.53        1.46
+std           692.96       57.32      28.67     1.13        1.12
+min             1.00     1000.00    2000.00   401.00        0.00
+25%           600.75     1034.00    2023.00   402.00        0.00
+50%          1200.50     1079.00    2046.00   403.00        1.00
+75%          1800.25     1132.00    2074.00   404.00        2.00
+max          2400.00     1199.00    2099.00   404.00        3.00
+2026-07-08 19:58:42 | INFO | BI | CALL a function to summarize KPIs........
+2026-07-08 19:59:53 | INFO | BI | === RUN START ===
+2026-07-08 19:59:53 | INFO | BI | project=BI
+2026-07-08 19:59:53 | INFO | BI | repo_dir=bintel-02-mining
+2026-07-08 19:59:53 | INFO | BI | python=3.14.6
+2026-07-08 19:59:53 | INFO | BI | os=Windows 10
+2026-07-08 19:59:53 | INFO | BI | shell=powershell
+2026-07-08 19:59:53 | INFO | BI | cwd=.
+2026-07-08 19:59:53 | INFO | BI | github_actions=False
+2026-07-08 19:59:53 | INFO | BI | ========================
+2026-07-08 19:59:53 | INFO | BI | START main()
+2026-07-08 19:59:53 | INFO | BI | ========================
+2026-07-08 19:59:53 | INFO | BI | Raw data:  = data\raw
+2026-07-08 19:59:53 | INFO | BI | Customers: = data\raw\customers_data.csv
+2026-07-08 19:59:53 | INFO | BI | Products:  = data\raw\products_data.csv
+2026-07-08 19:59:53 | INFO | BI | Sales:     = data\raw\sales_data.csv
+2026-07-08 19:59:53 | INFO | BI | CALL a function to load each dataset.............
+2026-07-08 19:59:53 | INFO | BI | Loading customers from data\raw\customers_data.csv
+2026-07-08 19:59:53 | INFO | BI | Loaded: 201 rows, 4 columns
+2026-07-08 19:59:53 | INFO | BI | Loading products from data\raw\products_data.csv
+2026-07-08 19:59:53 | INFO | BI | Loaded: 100 rows, 4 columns
+2026-07-08 19:59:53 | INFO | BI | Loading sales from data\raw\sales_data.csv
+2026-07-08 19:59:53 | INFO | BI | Loaded: 2400 rows, 7 columns
+2026-07-08 19:59:53 | INFO | BI | CALL a function to inspect each dataset..........
+2026-07-08 19:59:53 | INFO | BI | Inspecting customers
+2026-07-08 19:59:53 | INFO | BI |   Columns: ['CustomerID', 'Name', 'Region', 'JoinDate']
+2026-07-08 19:59:53 | INFO | BI |   Shape:   201 rows x 4 columns
+2026-07-08 19:59:53 | DEBUG | BI | 
+   CustomerID           Name   Region    JoinDate
+0        1000   Robert Gomez     West  2024-02-25
+1        1001     John Silva     East  2020-12-01
+2        1002  Mark Marshall  Central  2020-08-08
+3        1003  David Brennan    North  2020-05-21
+4        1004  Kerry Collins    North  2023-09-12
+
+2026-07-08 19:59:53 | INFO | BI | Inspecting products
+2026-07-08 19:59:53 | INFO | BI |   Columns: ['ProductID', 'ProductName', 'Category', 'UnitPrice']
+2026-07-08 19:59:53 | INFO | BI |   Shape:   100 rows x 4 columns
+2026-07-08 19:59:53 | DEBUG | BI | 
+   ProductID           ProductName     Category  UnitPrice
+0       2000    Electronics-Signal  Electronics     969.31
+1       2001     Electronics-Boost  Electronics     412.35
+2       2002         Office-Family       Office     866.00
+3       2003  Electronics-Training  Electronics     385.18
+4       2004          Office-Where       Office     927.25
+
+2026-07-08 19:59:53 | INFO | BI | Inspecting sales
+2026-07-08 19:59:53 | INFO | BI |   Columns: ['TransactionID', 'SaleDate', 'CustomerID', 'ProductID', 'StoreID', 'CampaignID', 'SaleAmount']
+2026-07-08 19:59:53 | INFO | BI |   Shape:   2400 rows x 7 columns
+2026-07-08 19:59:53 | DEBUG | BI | 
+   TransactionID    SaleDate  CustomerID  ProductID  StoreID  CampaignID SaleAmount
+0              1  2025-01-09        1020       2023      401         0.0     643.02
+1              2  2024-07-10        1034       2091      404         2.0     529.24
+2              3  2025-03-22        1087       2035      403         3.0    4313.72
+3              4  2024-12-27        1186       2015      404         NaN    1275.85
+4              5  2025-04-21        1049       2005      402         0.0    1739.64
+
+2026-07-08 19:59:53 | INFO | BI | CALL a function to check data quality of each dataset........
+2026-07-08 19:59:53 | INFO | BI | Quality check: customers
+2026-07-08 19:59:53 | INFO | BI |   Total missing values: 0
+2026-07-08 19:59:53 | INFO | BI |   Duplicate rows: 1
+2026-07-08 19:59:53 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-08 19:59:53 | INFO | BI | Quality check: products
+2026-07-08 19:59:53 | INFO | BI |   Total missing values: 0
+2026-07-08 19:59:53 | INFO | BI |   Duplicate rows: 0
+2026-07-08 19:59:53 | INFO | BI | Quality check: sales
+2026-07-08 19:59:53 | INFO | BI |   Total missing values: 193
+2026-07-08 19:59:53 | WARNING | BI |   Missing by column:
+CampaignID    193
+dtype: int64
+2026-07-08 19:59:53 | INFO | BI |   Duplicate rows: 0
+2026-07-08 19:59:53 | INFO | BI | CALL a function to summarize numeric columns in each dataset........
+2026-07-08 19:59:53 | INFO | BI | Numeric summary: customers
+2026-07-08 19:59:53 | INFO | BI | 
+       CustomerID
+count      201.00
+mean      1099.03
+std         58.12
+min       1000.00
+25%       1049.00
+50%       1099.00
+75%       1149.00
+max       1199.00
+2026-07-08 19:59:53 | INFO | BI | Numeric summary: products
+2026-07-08 19:59:53 | INFO | BI | 
+       ProductID  UnitPrice
+count     100.00     100.00
+mean     2049.50     507.77
+std        29.01     290.80
+min      2000.00      13.51
+25%      2024.75     255.53
+50%      2049.50     496.39
+75%      2074.25     771.28
+max      2099.00     976.44
+2026-07-08 19:59:53 | INFO | BI | Numeric summary: sales
+2026-07-08 19:59:53 | INFO | BI | 
+       TransactionID  CustomerID  ProductID  StoreID  CampaignID
+count        2400.00     2400.00    2400.00  2400.00     2207.00
+mean         1200.50     1086.75    2049.07   402.53        1.46
+std           692.96       57.32      28.67     1.13        1.12
+min             1.00     1000.00    2000.00   401.00        0.00
+25%           600.75     1034.00    2023.00   402.00        0.00
+50%          1200.50     1079.00    2046.00   403.00        1.00
+75%          1800.25     1132.00    2074.00   404.00        2.00
+max          2400.00     1199.00    2099.00   404.00        3.00
+2026-07-08 19:59:53 | INFO | BI | CALL a function to summarize KPIs........
+2026-07-08 20:00:40 | INFO | BI | === RUN START ===
+2026-07-08 20:00:40 | INFO | BI | project=BI
+2026-07-08 20:00:40 | INFO | BI | repo_dir=bintel-02-mining
+2026-07-08 20:00:40 | INFO | BI | python=3.14.6
+2026-07-08 20:00:40 | INFO | BI | os=Windows 10
+2026-07-08 20:00:40 | INFO | BI | shell=powershell
+2026-07-08 20:00:40 | INFO | BI | cwd=.
+2026-07-08 20:00:40 | INFO | BI | github_actions=False
+2026-07-08 20:00:40 | INFO | BI | ========================
+2026-07-08 20:00:40 | INFO | BI | START main()
+2026-07-08 20:00:40 | INFO | BI | ========================
+2026-07-08 20:00:40 | INFO | BI | Raw data:  = data\raw
+2026-07-08 20:00:40 | INFO | BI | Customers: = data\raw\customers_data.csv
+2026-07-08 20:00:40 | INFO | BI | Products:  = data\raw\products_data.csv
+2026-07-08 20:00:40 | INFO | BI | Sales:     = data\raw\sales_data.csv
+2026-07-08 20:00:40 | INFO | BI | CALL a function to load each dataset.............
+2026-07-08 20:00:40 | INFO | BI | Loading customers from data\raw\customers_data.csv
+2026-07-08 20:00:40 | INFO | BI | Loaded: 201 rows, 4 columns
+2026-07-08 20:00:40 | INFO | BI | Loading products from data\raw\products_data.csv
+2026-07-08 20:00:40 | INFO | BI | Loaded: 100 rows, 4 columns
+2026-07-08 20:00:40 | INFO | BI | Loading sales from data\raw\sales_data.csv
+2026-07-08 20:00:40 | INFO | BI | Loaded: 2400 rows, 7 columns
+2026-07-08 20:00:40 | INFO | BI | CALL a function to inspect each dataset..........
+2026-07-08 20:00:40 | INFO | BI | Inspecting customers
+2026-07-08 20:00:40 | INFO | BI |   Columns: ['CustomerID', 'Name', 'Region', 'JoinDate']
+2026-07-08 20:00:40 | INFO | BI |   Shape:   201 rows x 4 columns
+2026-07-08 20:00:40 | DEBUG | BI | 
+   CustomerID           Name   Region    JoinDate
+0        1000   Robert Gomez     West  2024-02-25
+1        1001     John Silva     East  2020-12-01
+2        1002  Mark Marshall  Central  2020-08-08
+3        1003  David Brennan    North  2020-05-21
+4        1004  Kerry Collins    North  2023-09-12
+
+2026-07-08 20:00:40 | INFO | BI | Inspecting products
+2026-07-08 20:00:40 | INFO | BI |   Columns: ['ProductID', 'ProductName', 'Category', 'UnitPrice']
+2026-07-08 20:00:40 | INFO | BI |   Shape:   100 rows x 4 columns
+2026-07-08 20:00:40 | DEBUG | BI | 
+   ProductID           ProductName     Category  UnitPrice
+0       2000    Electronics-Signal  Electronics     969.31
+1       2001     Electronics-Boost  Electronics     412.35
+2       2002         Office-Family       Office     866.00
+3       2003  Electronics-Training  Electronics     385.18
+4       2004          Office-Where       Office     927.25
+
+2026-07-08 20:00:40 | INFO | BI | Inspecting sales
+2026-07-08 20:00:40 | INFO | BI |   Columns: ['TransactionID', 'SaleDate', 'CustomerID', 'ProductID', 'StoreID', 'CampaignID', 'SaleAmount']
+2026-07-08 20:00:40 | INFO | BI |   Shape:   2400 rows x 7 columns
+2026-07-08 20:00:40 | DEBUG | BI | 
+   TransactionID    SaleDate  CustomerID  ProductID  StoreID  CampaignID SaleAmount
+0              1  2025-01-09        1020       2023      401         0.0     643.02
+1              2  2024-07-10        1034       2091      404         2.0     529.24
+2              3  2025-03-22        1087       2035      403         3.0    4313.72
+3              4  2024-12-27        1186       2015      404         NaN    1275.85
+4              5  2025-04-21        1049       2005      402         0.0    1739.64
+
+2026-07-08 20:00:40 | INFO | BI | CALL a function to check data quality of each dataset........
+2026-07-08 20:00:40 | INFO | BI | Quality check: customers
+2026-07-08 20:00:40 | INFO | BI |   Total missing values: 0
+2026-07-08 20:00:40 | INFO | BI |   Duplicate rows: 1
+2026-07-08 20:00:40 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-08 20:00:40 | INFO | BI | Quality check: products
+2026-07-08 20:00:40 | INFO | BI |   Total missing values: 0
+2026-07-08 20:00:40 | INFO | BI |   Duplicate rows: 0
+2026-07-08 20:00:40 | INFO | BI | Quality check: sales
+2026-07-08 20:00:40 | INFO | BI |   Total missing values: 193
+2026-07-08 20:00:40 | WARNING | BI |   Missing by column:
+CampaignID    193
+dtype: int64
+2026-07-08 20:00:40 | INFO | BI |   Duplicate rows: 0
+2026-07-08 20:00:40 | INFO | BI | CALL a function to summarize numeric columns in each dataset........
+2026-07-08 20:00:40 | INFO | BI | Numeric summary: customers
+2026-07-08 20:00:40 | INFO | BI | 
+       CustomerID
+count      201.00
+mean      1099.03
+std         58.12
+min       1000.00
+25%       1049.00
+50%       1099.00
+75%       1149.00
+max       1199.00
+2026-07-08 20:00:40 | INFO | BI | Numeric summary: products
+2026-07-08 20:00:40 | INFO | BI | 
+       ProductID  UnitPrice
+count     100.00     100.00
+mean     2049.50     507.77
+std        29.01     290.80
+min      2000.00      13.51
+25%      2024.75     255.53
+50%      2049.50     496.39
+75%      2074.25     771.28
+max      2099.00     976.44
+2026-07-08 20:00:40 | INFO | BI | Numeric summary: sales
+2026-07-08 20:00:40 | INFO | BI | 
+       TransactionID  CustomerID  ProductID  StoreID  CampaignID
+count        2400.00     2400.00    2400.00  2400.00     2207.00
+mean         1200.50     1086.75    2049.07   402.53        1.46
+std           692.96       57.32      28.67     1.13        1.12
+min             1.00     1000.00    2000.00   401.00        0.00
+25%           600.75     1034.00    2023.00   402.00        0.00
+50%          1200.50     1079.00    2046.00   403.00        1.00
+75%          1800.25     1132.00    2074.00   404.00        2.00
+max          2400.00     1199.00    2099.00   404.00        3.00
+2026-07-08 20:00:40 | INFO | BI | CALL a function to summarize KPIs........
+2026-07-08 20:03:41 | INFO | BI | === RUN START ===
+2026-07-08 20:03:41 | INFO | BI | project=BI
+2026-07-08 20:03:41 | INFO | BI | repo_dir=bintel-02-mining
+2026-07-08 20:03:41 | INFO | BI | python=3.14.6
+2026-07-08 20:03:41 | INFO | BI | os=Windows 10
+2026-07-08 20:03:41 | INFO | BI | shell=powershell
+2026-07-08 20:03:41 | INFO | BI | cwd=.
+2026-07-08 20:03:41 | INFO | BI | github_actions=False
+2026-07-08 20:03:41 | INFO | BI | ========================
+2026-07-08 20:03:41 | INFO | BI | START main()
+2026-07-08 20:03:41 | INFO | BI | ========================
+2026-07-08 20:03:41 | INFO | BI | Raw data:  = data\raw
+2026-07-08 20:03:41 | INFO | BI | Customers: = data\raw\customers_data.csv
+2026-07-08 20:03:41 | INFO | BI | Products:  = data\raw\products_data.csv
+2026-07-08 20:03:41 | INFO | BI | Sales:     = data\raw\sales_data.csv
+2026-07-08 20:03:41 | INFO | BI | CALL a function to load each dataset.............
+2026-07-08 20:03:41 | INFO | BI | Loading customers from data\raw\customers_data.csv
+2026-07-08 20:03:41 | INFO | BI | Loaded: 201 rows, 4 columns
+2026-07-08 20:03:41 | INFO | BI | Loading products from data\raw\products_data.csv
+2026-07-08 20:03:41 | INFO | BI | Loaded: 100 rows, 4 columns
+2026-07-08 20:03:41 | INFO | BI | Loading sales from data\raw\sales_data.csv
+2026-07-08 20:03:41 | INFO | BI | Loaded: 2400 rows, 7 columns
+2026-07-08 20:03:41 | INFO | BI | CALL a function to inspect each dataset..........
+2026-07-08 20:03:41 | INFO | BI | Inspecting customers
+2026-07-08 20:03:41 | INFO | BI |   Columns: ['CustomerID', 'Name', 'Region', 'JoinDate']
+2026-07-08 20:03:41 | INFO | BI |   Shape:   201 rows x 4 columns
+2026-07-08 20:03:41 | DEBUG | BI | 
+   CustomerID           Name   Region    JoinDate
+0        1000   Robert Gomez     West  2024-02-25
+1        1001     John Silva     East  2020-12-01
+2        1002  Mark Marshall  Central  2020-08-08
+3        1003  David Brennan    North  2020-05-21
+4        1004  Kerry Collins    North  2023-09-12
+
+2026-07-08 20:03:41 | INFO | BI | Inspecting products
+2026-07-08 20:03:41 | INFO | BI |   Columns: ['ProductID', 'ProductName', 'Category', 'UnitPrice']
+2026-07-08 20:03:41 | INFO | BI |   Shape:   100 rows x 4 columns
+2026-07-08 20:03:41 | DEBUG | BI | 
+   ProductID           ProductName     Category  UnitPrice
+0       2000    Electronics-Signal  Electronics     969.31
+1       2001     Electronics-Boost  Electronics     412.35
+2       2002         Office-Family       Office     866.00
+3       2003  Electronics-Training  Electronics     385.18
+4       2004          Office-Where       Office     927.25
+
+2026-07-08 20:03:41 | INFO | BI | Inspecting sales
+2026-07-08 20:03:41 | INFO | BI |   Columns: ['TransactionID', 'SaleDate', 'CustomerID', 'ProductID', 'StoreID', 'CampaignID', 'SaleAmount']
+2026-07-08 20:03:41 | INFO | BI |   Shape:   2400 rows x 7 columns
+2026-07-08 20:03:41 | DEBUG | BI | 
+   TransactionID    SaleDate  CustomerID  ProductID  StoreID  CampaignID SaleAmount
+0              1  2025-01-09        1020       2023      401         0.0     643.02
+1              2  2024-07-10        1034       2091      404         2.0     529.24
+2              3  2025-03-22        1087       2035      403         3.0    4313.72
+3              4  2024-12-27        1186       2015      404         NaN    1275.85
+4              5  2025-04-21        1049       2005      402         0.0    1739.64
+
+2026-07-08 20:03:41 | INFO | BI | CALL a function to check data quality of each dataset........
+2026-07-08 20:03:41 | INFO | BI | Quality check: customers
+2026-07-08 20:03:41 | INFO | BI |   Total missing values: 0
+2026-07-08 20:03:41 | INFO | BI |   Duplicate rows: 1
+2026-07-08 20:03:41 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-08 20:03:41 | INFO | BI | Quality check: products
+2026-07-08 20:03:41 | INFO | BI |   Total missing values: 0
+2026-07-08 20:03:41 | INFO | BI |   Duplicate rows: 0
+2026-07-08 20:03:41 | INFO | BI | Quality check: sales
+2026-07-08 20:03:41 | INFO | BI |   Total missing values: 193
+2026-07-08 20:03:41 | WARNING | BI |   Missing by column:
+CampaignID    193
+dtype: int64
+2026-07-08 20:03:41 | INFO | BI |   Duplicate rows: 0
+2026-07-08 20:03:41 | INFO | BI | CALL a function to summarize numeric columns in each dataset........
+2026-07-08 20:03:41 | INFO | BI | Numeric summary: customers
+2026-07-08 20:03:41 | INFO | BI | 
+       CustomerID
+count      201.00
+mean      1099.03
+std         58.12
+min       1000.00
+25%       1049.00
+50%       1099.00
+75%       1149.00
+max       1199.00
+2026-07-08 20:03:41 | INFO | BI | Numeric summary: products
+2026-07-08 20:03:41 | INFO | BI | 
+       ProductID  UnitPrice
+count     100.00     100.00
+mean     2049.50     507.77
+std        29.01     290.80
+min      2000.00      13.51
+25%      2024.75     255.53
+50%      2049.50     496.39
+75%      2074.25     771.28
+max      2099.00     976.44
+2026-07-08 20:03:41 | INFO | BI | Numeric summary: sales
+2026-07-08 20:03:41 | INFO | BI | 
+       TransactionID  CustomerID  ProductID  StoreID  CampaignID
+count        2400.00     2400.00    2400.00  2400.00     2207.00
+mean         1200.50     1086.75    2049.07   402.53        1.46
+std           692.96       57.32      28.67     1.13        1.12
+min             1.00     1000.00    2000.00   401.00        0.00
+25%           600.75     1034.00    2023.00   402.00        0.00
+50%          1200.50     1079.00    2046.00   403.00        1.00
+75%          1800.25     1132.00    2074.00   404.00        2.00
+max          2400.00     1199.00    2099.00   404.00        3.00
+2026-07-08 20:03:41 | INFO | BI | CALL a function to plot price distribution........
+2026-07-08 20:03:41 | INFO | BI | Plotting price distribution
+2026-07-08 20:03:44 | INFO | BI | Price distribution chart created
+2026-07-08 20:03:44 | INFO | BI | CALL a function to plot sales trend over time........
+2026-07-08 20:03:44 | INFO | BI | Plotting sales trend over time
+2026-07-08 20:03:44 | INFO | BI | Creating chart: Total Sales by Month
+2026-07-08 20:03:44 | INFO | BI | Sales trend chart created
+2026-07-08 20:03:44 | INFO | BI | CALL a function to summarize the datasets........
+2026-07-08 20:03:44 | INFO | BI | ========================
+2026-07-08 20:03:44 | INFO | BI | SUMMARY
+2026-07-08 20:03:44 | INFO | BI | ========================
+2026-07-08 20:03:44 | INFO | BI | Customers:  201 rows, 4 columns
+2026-07-08 20:03:44 | INFO | BI | Products:   100 rows, 4 columns
+2026-07-08 20:03:44 | INFO | BI | Sales:      2400 rows, 7 columns
+2026-07-08 20:03:44 | INFO | BI | ========================
+2026-07-08 20:03:44 | INFO | BI | ANALYST NOTES:
+2026-07-08 20:03:44 | INFO | BI | Any inconsistent data should be reviewed later.
+2026-07-08 20:03:44 | INFO | BI | Any duplicate rows should be reviewed later.
+2026-07-08 20:03:44 | INFO | BI | Cleaning and data preparation will be done in a later module.
+2026-07-08 20:03:44 | INFO | BI | ========================
+2026-07-08 20:03:44 | INFO | BI | CALL a function to show charts........
+2026-07-08 20:03:48 | INFO | BI | Workflow complete
+2026-07-08 20:03:48 | INFO | BI | CLOSE chart windows to continue.
+2026-07-08 20:03:48 | INFO | BI | Terminate this process with CTRL+c as needed.
+2026-07-08 20:03:48 | INFO | BI | ========================
+2026-07-08 20:03:48 | INFO | BI | Executed successfully!
+2026-07-08 20:03:48 | INFO | BI | ========================
+2026-07-08 20:26:08 | INFO | BI | === RUN START ===
+2026-07-08 20:26:08 | INFO | BI | project=BI
+2026-07-08 20:26:08 | INFO | BI | repo_dir=bintel-02-mining
+2026-07-08 20:26:08 | INFO | BI | python=3.14.6
+2026-07-08 20:26:08 | INFO | BI | os=Windows 10
+2026-07-08 20:26:08 | INFO | BI | shell=powershell
+2026-07-08 20:26:08 | INFO | BI | cwd=.
+2026-07-08 20:26:08 | INFO | BI | github_actions=False
+2026-07-08 20:26:08 | INFO | BI | ========================
+2026-07-08 20:26:08 | INFO | BI | START main()
+2026-07-08 20:26:08 | INFO | BI | ========================
+2026-07-08 20:26:08 | INFO | BI | Raw data:  = data\raw
+2026-07-08 20:26:08 | INFO | BI | Customers: = data\raw\customers_data.csv
+2026-07-08 20:26:08 | INFO | BI | Products:  = data\raw\products_data.csv
+2026-07-08 20:26:08 | INFO | BI | Sales:     = data\raw\sales_data.csv
+2026-07-08 20:26:08 | INFO | BI | CALL a function to load each dataset.............
+2026-07-08 20:26:08 | INFO | BI | Loading customers from data\raw\customers_data.csv
+2026-07-08 20:26:08 | INFO | BI | Loaded: 201 rows, 4 columns
+2026-07-08 20:26:08 | INFO | BI | Loading products from data\raw\products_data.csv
+2026-07-08 20:26:08 | INFO | BI | Loaded: 100 rows, 4 columns
+2026-07-08 20:26:08 | INFO | BI | Loading sales from data\raw\sales_data.csv
+2026-07-08 20:26:08 | INFO | BI | Loaded: 2400 rows, 7 columns
+2026-07-08 20:26:08 | INFO | BI | CALL a function to inspect each dataset..........
+2026-07-08 20:26:08 | INFO | BI | Inspecting customers
+2026-07-08 20:26:08 | INFO | BI |   Columns: ['CustomerID', 'Name', 'Region', 'JoinDate']
+2026-07-08 20:26:08 | INFO | BI |   Shape:   201 rows x 4 columns
+2026-07-08 20:26:08 | DEBUG | BI | 
+   CustomerID           Name   Region    JoinDate
+0        1000   Robert Gomez     West  2024-02-25
+1        1001     John Silva     East  2020-12-01
+2        1002  Mark Marshall  Central  2020-08-08
+3        1003  David Brennan    North  2020-05-21
+4        1004  Kerry Collins    North  2023-09-12
+
+2026-07-08 20:26:08 | INFO | BI | Inspecting products
+2026-07-08 20:26:08 | INFO | BI |   Columns: ['ProductID', 'ProductName', 'Category', 'UnitPrice']
+2026-07-08 20:26:08 | INFO | BI |   Shape:   100 rows x 4 columns
+2026-07-08 20:26:08 | DEBUG | BI | 
+   ProductID           ProductName     Category  UnitPrice
+0       2000    Electronics-Signal  Electronics     969.31
+1       2001     Electronics-Boost  Electronics     412.35
+2       2002         Office-Family       Office     866.00
+3       2003  Electronics-Training  Electronics     385.18
+4       2004          Office-Where       Office     927.25
+
+2026-07-08 20:26:08 | INFO | BI | Inspecting sales
+2026-07-08 20:26:08 | INFO | BI |   Columns: ['TransactionID', 'SaleDate', 'CustomerID', 'ProductID', 'StoreID', 'CampaignID', 'SaleAmount']
+2026-07-08 20:26:08 | INFO | BI |   Shape:   2400 rows x 7 columns
+2026-07-08 20:26:08 | DEBUG | BI | 
+   TransactionID    SaleDate  CustomerID  ProductID  StoreID  CampaignID SaleAmount
+0              1  2025-01-09        1020       2023      401         0.0     643.02
+1              2  2024-07-10        1034       2091      404         2.0     529.24
+2              3  2025-03-22        1087       2035      403         3.0    4313.72
+3              4  2024-12-27        1186       2015      404         NaN    1275.85
+4              5  2025-04-21        1049       2005      402         0.0    1739.64
+
+2026-07-08 20:26:08 | INFO | BI | CALL a function to check data quality of each dataset........
+2026-07-08 20:26:08 | INFO | BI | Quality check: customers
+2026-07-08 20:26:08 | INFO | BI |   Total missing values: 0
+2026-07-08 20:26:08 | INFO | BI |   Duplicate rows: 1
+2026-07-08 20:26:08 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-08 20:26:08 | INFO | BI | Quality check: products
+2026-07-08 20:26:08 | INFO | BI |   Total missing values: 0
+2026-07-08 20:26:08 | INFO | BI |   Duplicate rows: 0
+2026-07-08 20:26:08 | INFO | BI | Quality check: sales
+2026-07-08 20:26:08 | INFO | BI |   Total missing values: 193
+2026-07-08 20:26:08 | WARNING | BI |   Missing by column:
+CampaignID    193
+dtype: int64
+2026-07-08 20:26:08 | INFO | BI |   Duplicate rows: 0
+2026-07-08 20:26:08 | INFO | BI | CALL a function to summarize numeric columns in each dataset........
+2026-07-08 20:26:08 | INFO | BI | Numeric summary: customers
+2026-07-08 20:26:08 | INFO | BI | 
+       CustomerID
+count      201.00
+mean      1099.03
+std         58.12
+min       1000.00
+25%       1049.00
+50%       1099.00
+75%       1149.00
+max       1199.00
+2026-07-08 20:26:08 | INFO | BI | Numeric summary: products
+2026-07-08 20:26:08 | INFO | BI | 
+       ProductID  UnitPrice
+count     100.00     100.00
+mean     2049.50     507.77
+std        29.01     290.80
+min      2000.00      13.51
+25%      2024.75     255.53
+50%      2049.50     496.39
+75%      2074.25     771.28
+max      2099.00     976.44
+2026-07-08 20:26:08 | INFO | BI | Numeric summary: sales
+2026-07-08 20:26:08 | INFO | BI | 
+       TransactionID  CustomerID  ProductID  StoreID  CampaignID
+count        2400.00     2400.00    2400.00  2400.00     2207.00
+mean         1200.50     1086.75    2049.07   402.53        1.46
+std           692.96       57.32      28.67     1.13        1.12
+min             1.00     1000.00    2000.00   401.00        0.00
+25%           600.75     1034.00    2023.00   402.00        0.00
+50%          1200.50     1079.00    2046.00   403.00        1.00
+75%          1800.25     1132.00    2074.00   404.00        2.00
+max          2400.00     1199.00    2099.00   404.00        3.00
+2026-07-08 20:26:08 | INFO | BI | CALL a function to plot price distribution........
+2026-07-08 20:26:08 | INFO | BI | Plotting price distribution
+2026-07-08 20:26:09 | INFO | BI | Price distribution chart created
+2026-07-08 20:26:09 | INFO | BI | CALL a function to plot sales trend over time........
+2026-07-08 20:26:09 | INFO | BI | Plotting sales trend over time
+2026-07-08 20:26:09 | INFO | BI | Creating chart: Total Sales by Month
+2026-07-08 20:26:09 | INFO | BI | Sales trend chart created
+2026-07-08 20:26:09 | INFO | BI | CALL a function to summarize the datasets........
+2026-07-08 20:26:09 | INFO | BI | ========================
+2026-07-08 20:26:09 | INFO | BI | SUMMARY
+2026-07-08 20:26:09 | INFO | BI | ========================
+2026-07-08 20:26:09 | INFO | BI | Customers:  201 rows, 4 columns
+2026-07-08 20:26:09 | INFO | BI | Products:   100 rows, 4 columns
+2026-07-08 20:26:09 | INFO | BI | Sales:      2400 rows, 7 columns
+2026-07-08 20:26:09 | INFO | BI | ========================
+2026-07-08 20:26:09 | INFO | BI | ANALYST NOTES:
+2026-07-08 20:26:09 | INFO | BI | Any inconsistent data should be reviewed later.
+2026-07-08 20:26:09 | INFO | BI | Any duplicate rows should be reviewed later.
+2026-07-08 20:26:09 | INFO | BI | Cleaning and data preparation will be done in a later module.
+2026-07-08 20:26:09 | INFO | BI | ========================
+2026-07-08 20:26:09 | INFO | BI | CALL a function to show charts........
+2026-07-08 20:26:16 | INFO | BI | Workflow complete
+2026-07-08 20:26:16 | INFO | BI | CLOSE chart windows to continue.
+2026-07-08 20:26:16 | INFO | BI | Terminate this process with CTRL+c as needed.
+2026-07-08 20:26:16 | INFO | BI | ========================
+2026-07-08 20:26:16 | INFO | BI | Executed successfully!
+2026-07-08 20:26:16 | INFO | BI | ========================
+2026-07-08 20:28:53 | INFO | BI | === RUN START ===
+2026-07-08 20:28:53 | INFO | BI | project=BI
+2026-07-08 20:28:53 | INFO | BI | repo_dir=bintel-02-mining
+2026-07-08 20:28:53 | INFO | BI | python=3.14.6
+2026-07-08 20:28:53 | INFO | BI | os=Windows 10
+2026-07-08 20:28:53 | INFO | BI | shell=powershell
+2026-07-08 20:28:53 | INFO | BI | cwd=.
+2026-07-08 20:28:53 | INFO | BI | github_actions=False
+2026-07-08 20:28:53 | INFO | BI | ========================
+2026-07-08 20:28:53 | INFO | BI | START main()
+2026-07-08 20:28:53 | INFO | BI | ========================
+2026-07-08 20:28:53 | INFO | BI | Raw data:  = data\raw
+2026-07-08 20:28:53 | INFO | BI | Customers: = data\raw\customers_data.csv
+2026-07-08 20:28:53 | INFO | BI | Products:  = data\raw\products_data.csv
+2026-07-08 20:28:53 | INFO | BI | Sales:     = data\raw\sales_data.csv
+2026-07-08 20:28:53 | INFO | BI | CALL a function to load each dataset.............
+2026-07-08 20:28:53 | INFO | BI | Loading customers from data\raw\customers_data.csv
+2026-07-08 20:28:53 | INFO | BI | Loaded: 201 rows, 4 columns
+2026-07-08 20:28:53 | INFO | BI | Loading products from data\raw\products_data.csv
+2026-07-08 20:28:53 | INFO | BI | Loaded: 100 rows, 4 columns
+2026-07-08 20:28:53 | INFO | BI | Loading sales from data\raw\sales_data.csv
+2026-07-08 20:28:54 | INFO | BI | Loaded: 2400 rows, 7 columns
+2026-07-08 20:28:54 | INFO | BI | CALL a function to inspect each dataset..........
+2026-07-08 20:28:54 | INFO | BI | Inspecting customers
+2026-07-08 20:28:54 | INFO | BI |   Columns: ['CustomerID', 'Name', 'Region', 'JoinDate']
+2026-07-08 20:28:54 | INFO | BI |   Shape:   201 rows x 4 columns
+2026-07-08 20:28:54 | DEBUG | BI | 
+   CustomerID           Name   Region    JoinDate
+0        1000   Robert Gomez     West  2024-02-25
+1        1001     John Silva     East  2020-12-01
+2        1002  Mark Marshall  Central  2020-08-08
+3        1003  David Brennan    North  2020-05-21
+4        1004  Kerry Collins    North  2023-09-12
+
+2026-07-08 20:28:54 | INFO | BI | Inspecting products
+2026-07-08 20:28:54 | INFO | BI |   Columns: ['ProductID', 'ProductName', 'Category', 'UnitPrice']
+2026-07-08 20:28:54 | INFO | BI |   Shape:   100 rows x 4 columns
+2026-07-08 20:28:54 | DEBUG | BI | 
+   ProductID           ProductName     Category  UnitPrice
+0       2000    Electronics-Signal  Electronics     969.31
+1       2001     Electronics-Boost  Electronics     412.35
+2       2002         Office-Family       Office     866.00
+3       2003  Electronics-Training  Electronics     385.18
+4       2004          Office-Where       Office     927.25
+
+2026-07-08 20:28:54 | INFO | BI | Inspecting sales
+2026-07-08 20:28:54 | INFO | BI |   Columns: ['TransactionID', 'SaleDate', 'CustomerID', 'ProductID', 'StoreID', 'CampaignID', 'SaleAmount']
+2026-07-08 20:28:54 | INFO | BI |   Shape:   2400 rows x 7 columns
+2026-07-08 20:28:54 | DEBUG | BI | 
+   TransactionID    SaleDate  CustomerID  ProductID  StoreID  CampaignID SaleAmount
+0              1  2025-01-09        1020       2023      401         0.0     643.02
+1              2  2024-07-10        1034       2091      404         2.0     529.24
+2              3  2025-03-22        1087       2035      403         3.0    4313.72
+3              4  2024-12-27        1186       2015      404         NaN    1275.85
+4              5  2025-04-21        1049       2005      402         0.0    1739.64
+
+2026-07-08 20:28:54 | INFO | BI | CALL a function to check data quality of each dataset........
+2026-07-08 20:28:54 | INFO | BI | Quality check: customers
+2026-07-08 20:28:54 | INFO | BI |   Total missing values: 0
+2026-07-08 20:28:54 | INFO | BI |   Duplicate rows: 1
+2026-07-08 20:28:54 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-08 20:28:54 | INFO | BI | Quality check: products
+2026-07-08 20:28:54 | INFO | BI |   Total missing values: 0
+2026-07-08 20:28:54 | INFO | BI |   Duplicate rows: 0
+2026-07-08 20:28:54 | INFO | BI | Quality check: sales
+2026-07-08 20:28:54 | INFO | BI |   Total missing values: 193
+2026-07-08 20:28:54 | WARNING | BI |   Missing by column:
+CampaignID    193
+dtype: int64
+2026-07-08 20:28:54 | INFO | BI |   Duplicate rows: 0
+2026-07-08 20:28:54 | INFO | BI | CALL a function to summarize numeric columns in each dataset........
+2026-07-08 20:28:54 | INFO | BI | Numeric summary: customers
+2026-07-08 20:28:54 | INFO | BI | 
+       CustomerID
+count      201.00
+mean      1099.03
+std         58.12
+min       1000.00
+25%       1049.00
+50%       1099.00
+75%       1149.00
+max       1199.00
+2026-07-08 20:28:54 | INFO | BI | Numeric summary: products
+2026-07-08 20:28:54 | INFO | BI | 
+       ProductID  UnitPrice
+count     100.00     100.00
+mean     2049.50     507.77
+std        29.01     290.80
+min      2000.00      13.51
+25%      2024.75     255.53
+50%      2049.50     496.39
+75%      2074.25     771.28
+max      2099.00     976.44
+2026-07-08 20:28:54 | INFO | BI | Numeric summary: sales
+2026-07-08 20:28:54 | INFO | BI | 
+       TransactionID  CustomerID  ProductID  StoreID  CampaignID
+count        2400.00     2400.00    2400.00  2400.00     2207.00
+mean         1200.50     1086.75    2049.07   402.53        1.46
+std           692.96       57.32      28.67     1.13        1.12
+min             1.00     1000.00    2000.00   401.00        0.00
+25%           600.75     1034.00    2023.00   402.00        0.00
+50%          1200.50     1079.00    2046.00   403.00        1.00
+75%          1800.25     1132.00    2074.00   404.00        2.00
+max          2400.00     1199.00    2099.00   404.00        3.00
+2026-07-08 20:28:54 | INFO | BI | CALL a function to plot price distribution........
+2026-07-08 20:28:54 | INFO | BI | Plotting price distribution
+2026-07-08 20:28:55 | INFO | BI | Price distribution chart created
+2026-07-08 20:28:55 | INFO | BI | CALL a function to plot sales trend over time........
+2026-07-08 20:28:55 | INFO | BI | Plotting sales trend over time
+2026-07-08 20:28:55 | INFO | BI | Creating chart: Total Sales by Month
+2026-07-08 20:28:55 | INFO | BI | Sales trend chart created
+2026-07-08 20:28:55 | INFO | BI | CALL a function to summarize the datasets........
+2026-07-08 20:28:55 | INFO | BI | ========================
+2026-07-08 20:28:55 | INFO | BI | SUMMARY
+2026-07-08 20:28:55 | INFO | BI | ========================
+2026-07-08 20:28:55 | INFO | BI | Customers:  201 rows, 4 columns
+2026-07-08 20:28:55 | INFO | BI | Products:   100 rows, 4 columns
+2026-07-08 20:28:55 | INFO | BI | Sales:      2400 rows, 7 columns
+2026-07-08 20:28:55 | INFO | BI | ========================
+2026-07-08 20:28:55 | INFO | BI | ANALYST NOTES:
+2026-07-08 20:28:55 | INFO | BI | Any inconsistent data should be reviewed later.
+2026-07-08 20:28:55 | INFO | BI | Any duplicate rows should be reviewed later.
+2026-07-08 20:28:55 | INFO | BI | Cleaning and data preparation will be done in a later module.
+2026-07-08 20:28:55 | INFO | BI | ========================
+2026-07-08 20:28:55 | INFO | BI | CALL a function to show charts........
+2026-07-08 20:29:03 | INFO | BI | Workflow complete
+2026-07-08 20:29:03 | INFO | BI | CLOSE chart windows to continue.
+2026-07-08 20:29:03 | INFO | BI | Terminate this process with CTRL+c as needed.
+2026-07-08 20:29:03 | INFO | BI | ========================
+2026-07-08 20:29:03 | INFO | BI | Executed successfully!
+2026-07-08 20:29:03 | INFO | BI | ========================
+2026-07-08 20:30:36 | INFO | BI | === RUN START ===
+2026-07-08 20:30:36 | INFO | BI | project=BI
+2026-07-08 20:30:36 | INFO | BI | repo_dir=bintel-02-mining
+2026-07-08 20:30:36 | INFO | BI | python=3.14.6
+2026-07-08 20:30:36 | INFO | BI | os=Windows 10
+2026-07-08 20:30:36 | INFO | BI | shell=powershell
+2026-07-08 20:30:36 | INFO | BI | cwd=.
+2026-07-08 20:30:36 | INFO | BI | github_actions=False
+2026-07-08 20:30:36 | INFO | BI | ========================
+2026-07-08 20:30:36 | INFO | BI | START main()
+2026-07-08 20:30:36 | INFO | BI | ========================
+2026-07-08 20:30:36 | INFO | BI | Raw data:  = data\raw
+2026-07-08 20:30:36 | INFO | BI | Customers: = data\raw\customers_data.csv
+2026-07-08 20:30:36 | INFO | BI | Products:  = data\raw\products_data.csv
+2026-07-08 20:30:36 | INFO | BI | Sales:     = data\raw\sales_data.csv
+2026-07-08 20:30:37 | INFO | BI | CALL a function to load each dataset.............
+2026-07-08 20:30:37 | INFO | BI | Loading customers from data\raw\customers_data.csv
+2026-07-08 20:30:37 | INFO | BI | Loaded: 201 rows, 4 columns
+2026-07-08 20:30:37 | INFO | BI | Loading products from data\raw\products_data.csv
+2026-07-08 20:30:37 | INFO | BI | Loaded: 100 rows, 4 columns
+2026-07-08 20:30:37 | INFO | BI | Loading sales from data\raw\sales_data.csv
+2026-07-08 20:30:37 | INFO | BI | Loaded: 2400 rows, 7 columns
+2026-07-08 20:30:37 | INFO | BI | CALL a function to inspect each dataset..........
+2026-07-08 20:30:37 | INFO | BI | Inspecting customers
+2026-07-08 20:30:37 | INFO | BI |   Columns: ['CustomerID', 'Name', 'Region', 'JoinDate']
+2026-07-08 20:30:37 | INFO | BI |   Shape:   201 rows x 4 columns
+2026-07-08 20:30:37 | DEBUG | BI | 
+   CustomerID           Name   Region    JoinDate
+0        1000   Robert Gomez     West  2024-02-25
+1        1001     John Silva     East  2020-12-01
+2        1002  Mark Marshall  Central  2020-08-08
+3        1003  David Brennan    North  2020-05-21
+4        1004  Kerry Collins    North  2023-09-12
+
+2026-07-08 20:30:37 | INFO | BI | Inspecting products
+2026-07-08 20:30:37 | INFO | BI |   Columns: ['ProductID', 'ProductName', 'Category', 'UnitPrice']
+2026-07-08 20:30:37 | INFO | BI |   Shape:   100 rows x 4 columns
+2026-07-08 20:30:37 | DEBUG | BI | 
+   ProductID           ProductName     Category  UnitPrice
+0       2000    Electronics-Signal  Electronics     969.31
+1       2001     Electronics-Boost  Electronics     412.35
+2       2002         Office-Family       Office     866.00
+3       2003  Electronics-Training  Electronics     385.18
+4       2004          Office-Where       Office     927.25
+
+2026-07-08 20:30:37 | INFO | BI | Inspecting sales
+2026-07-08 20:30:37 | INFO | BI |   Columns: ['TransactionID', 'SaleDate', 'CustomerID', 'ProductID', 'StoreID', 'CampaignID', 'SaleAmount']
+2026-07-08 20:30:37 | INFO | BI |   Shape:   2400 rows x 7 columns
+2026-07-08 20:30:37 | DEBUG | BI | 
+   TransactionID    SaleDate  CustomerID  ProductID  StoreID  CampaignID SaleAmount
+0              1  2025-01-09        1020       2023      401         0.0     643.02
+1              2  2024-07-10        1034       2091      404         2.0     529.24
+2              3  2025-03-22        1087       2035      403         3.0    4313.72
+3              4  2024-12-27        1186       2015      404         NaN    1275.85
+4              5  2025-04-21        1049       2005      402         0.0    1739.64
+
+2026-07-08 20:30:37 | INFO | BI | CALL a function to check data quality of each dataset........
+2026-07-08 20:30:37 | INFO | BI | Quality check: customers
+2026-07-08 20:30:37 | INFO | BI |   Total missing values: 0
+2026-07-08 20:30:37 | INFO | BI |   Duplicate rows: 1
+2026-07-08 20:30:37 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-08 20:30:37 | INFO | BI | Quality check: products
+2026-07-08 20:30:37 | INFO | BI |   Total missing values: 0
+2026-07-08 20:30:37 | INFO | BI |   Duplicate rows: 0
+2026-07-08 20:30:37 | INFO | BI | Quality check: sales
+2026-07-08 20:30:37 | INFO | BI |   Total missing values: 193
+2026-07-08 20:30:37 | WARNING | BI |   Missing by column:
+CampaignID    193
+dtype: int64
+2026-07-08 20:30:37 | INFO | BI |   Duplicate rows: 0
+2026-07-08 20:30:37 | INFO | BI | CALL a function to summarize numeric columns in each dataset........
+2026-07-08 20:30:37 | INFO | BI | Numeric summary: customers
+2026-07-08 20:30:37 | INFO | BI | 
+       CustomerID
+count      201.00
+mean      1099.03
+std         58.12
+min       1000.00
+25%       1049.00
+50%       1099.00
+75%       1149.00
+max       1199.00
+2026-07-08 20:30:37 | INFO | BI | Numeric summary: products
+2026-07-08 20:30:37 | INFO | BI | 
+       ProductID  UnitPrice
+count     100.00     100.00
+mean     2049.50     507.77
+std        29.01     290.80
+min      2000.00      13.51
+25%      2024.75     255.53
+50%      2049.50     496.39
+75%      2074.25     771.28
+max      2099.00     976.44
+2026-07-08 20:30:37 | INFO | BI | Numeric summary: sales
+2026-07-08 20:30:37 | INFO | BI | 
+       TransactionID  CustomerID  ProductID  StoreID  CampaignID
+count        2400.00     2400.00    2400.00  2400.00     2207.00
+mean         1200.50     1086.75    2049.07   402.53        1.46
+std           692.96       57.32      28.67     1.13        1.12
+min             1.00     1000.00    2000.00   401.00        0.00
+25%           600.75     1034.00    2023.00   402.00        0.00
+50%          1200.50     1079.00    2046.00   403.00        1.00
+75%          1800.25     1132.00    2074.00   404.00        2.00
+max          2400.00     1199.00    2099.00   404.00        3.00
+2026-07-08 20:30:37 | INFO | BI | CALL a function to plot price distribution........
+2026-07-08 20:30:37 | INFO | BI | Plotting price distribution
+2026-07-08 20:30:37 | INFO | BI | Price distribution chart created
+2026-07-08 20:30:37 | INFO | BI | CALL a function to plot sales trend over time........
+2026-07-08 20:30:37 | INFO | BI | Plotting sales trend over time
+2026-07-08 20:30:38 | INFO | BI | Creating chart: Total Sales by Month
+2026-07-08 20:30:38 | INFO | BI | Sales trend chart created
+2026-07-08 20:30:38 | INFO | BI | CALL a function to summarize the datasets........
+2026-07-08 20:30:38 | INFO | BI | ========================
+2026-07-08 20:30:38 | INFO | BI | SUMMARY
+2026-07-08 20:30:38 | INFO | BI | ========================
+2026-07-08 20:30:38 | INFO | BI | Customers:  201 rows, 4 columns
+2026-07-08 20:30:38 | INFO | BI | Products:   100 rows, 4 columns
+2026-07-08 20:30:38 | INFO | BI | Sales:      2400 rows, 7 columns
+2026-07-08 20:30:38 | INFO | BI | ========================
+2026-07-08 20:30:38 | INFO | BI | ANALYST NOTES:
+2026-07-08 20:30:38 | INFO | BI | Any inconsistent data should be reviewed later.
+2026-07-08 20:30:38 | INFO | BI | Any duplicate rows should be reviewed later.
+2026-07-08 20:30:38 | INFO | BI | Cleaning and data preparation will be done in a later module.
+2026-07-08 20:30:38 | INFO | BI | ========================
+2026-07-08 20:30:38 | INFO | BI | CALL a function to show charts........
+2026-07-08 20:30:44 | INFO | BI | Workflow complete
+2026-07-08 20:30:44 | INFO | BI | CLOSE chart windows to continue.
+2026-07-08 20:30:44 | INFO | BI | Terminate this process with CTRL+c as needed.
+2026-07-08 20:30:44 | INFO | BI | ========================
+2026-07-08 20:30:44 | INFO | BI | Executed successfully!
+2026-07-08 20:30:44 | INFO | BI | ========================
+2026-07-08 20:32:11 | INFO | BI | === RUN START ===
+2026-07-08 20:32:11 | INFO | BI | project=BI
+2026-07-08 20:32:11 | INFO | BI | repo_dir=bintel-02-mining
+2026-07-08 20:32:11 | INFO | BI | python=3.14.6
+2026-07-08 20:32:11 | INFO | BI | os=Windows 10
+2026-07-08 20:32:11 | INFO | BI | shell=powershell
+2026-07-08 20:32:11 | INFO | BI | cwd=.
+2026-07-08 20:32:11 | INFO | BI | github_actions=False
+2026-07-08 20:32:11 | INFO | BI | ========================
+2026-07-08 20:32:11 | INFO | BI | START main()
+2026-07-08 20:32:11 | INFO | BI | ========================
+2026-07-08 20:32:11 | INFO | BI | Raw data:  = data\raw
+2026-07-08 20:32:11 | INFO | BI | Customers: = data\raw\customers_data.csv
+2026-07-08 20:32:11 | INFO | BI | Products:  = data\raw\products_data.csv
+2026-07-08 20:32:11 | INFO | BI | Sales:     = data\raw\sales_data.csv
+2026-07-08 20:32:11 | INFO | BI | CALL a function to load each dataset.............
+2026-07-08 20:32:11 | INFO | BI | Loading customers from data\raw\customers_data.csv
+2026-07-08 20:32:11 | INFO | BI | Loaded: 201 rows, 4 columns
+2026-07-08 20:32:11 | INFO | BI | Loading products from data\raw\products_data.csv
+2026-07-08 20:32:11 | INFO | BI | Loaded: 100 rows, 4 columns
+2026-07-08 20:32:11 | INFO | BI | Loading sales from data\raw\sales_data.csv
+2026-07-08 20:32:11 | INFO | BI | Loaded: 2400 rows, 7 columns
+2026-07-08 20:32:11 | INFO | BI | CALL a function to inspect each dataset..........
+2026-07-08 20:32:11 | INFO | BI | Inspecting customers
+2026-07-08 20:32:11 | INFO | BI |   Columns: ['CustomerID', 'Name', 'Region', 'JoinDate']
+2026-07-08 20:32:11 | INFO | BI |   Shape:   201 rows x 4 columns
+2026-07-08 20:32:11 | DEBUG | BI | 
+   CustomerID           Name   Region    JoinDate
+0        1000   Robert Gomez     West  2024-02-25
+1        1001     John Silva     East  2020-12-01
+2        1002  Mark Marshall  Central  2020-08-08
+3        1003  David Brennan    North  2020-05-21
+4        1004  Kerry Collins    North  2023-09-12
+
+2026-07-08 20:32:11 | INFO | BI | Inspecting products
+2026-07-08 20:32:11 | INFO | BI |   Columns: ['ProductID', 'ProductName', 'Category', 'UnitPrice']
+2026-07-08 20:32:11 | INFO | BI |   Shape:   100 rows x 4 columns
+2026-07-08 20:32:11 | DEBUG | BI | 
+   ProductID           ProductName     Category  UnitPrice
+0       2000    Electronics-Signal  Electronics     969.31
+1       2001     Electronics-Boost  Electronics     412.35
+2       2002         Office-Family       Office     866.00
+3       2003  Electronics-Training  Electronics     385.18
+4       2004          Office-Where       Office     927.25
+
+2026-07-08 20:32:11 | INFO | BI | Inspecting sales
+2026-07-08 20:32:11 | INFO | BI |   Columns: ['TransactionID', 'SaleDate', 'CustomerID', 'ProductID', 'StoreID', 'CampaignID', 'SaleAmount']
+2026-07-08 20:32:11 | INFO | BI |   Shape:   2400 rows x 7 columns
+2026-07-08 20:32:11 | DEBUG | BI | 
+   TransactionID    SaleDate  CustomerID  ProductID  StoreID  CampaignID SaleAmount
+0              1  2025-01-09        1020       2023      401         0.0     643.02
+1              2  2024-07-10        1034       2091      404         2.0     529.24
+2              3  2025-03-22        1087       2035      403         3.0    4313.72
+3              4  2024-12-27        1186       2015      404         NaN    1275.85
+4              5  2025-04-21        1049       2005      402         0.0    1739.64
+
+2026-07-08 20:32:11 | INFO | BI | CALL a function to check data quality of each dataset........
+2026-07-08 20:32:11 | INFO | BI | Quality check: customers
+2026-07-08 20:32:11 | INFO | BI |   Total missing values: 0
+2026-07-08 20:32:11 | INFO | BI |   Duplicate rows: 1
+2026-07-08 20:32:11 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-08 20:32:11 | INFO | BI | Quality check: products
+2026-07-08 20:32:11 | INFO | BI |   Total missing values: 0
+2026-07-08 20:32:11 | INFO | BI |   Duplicate rows: 0
+2026-07-08 20:32:11 | INFO | BI | Quality check: sales
+2026-07-08 20:32:11 | INFO | BI |   Total missing values: 193
+2026-07-08 20:32:11 | WARNING | BI |   Missing by column:
+CampaignID    193
+dtype: int64
+2026-07-08 20:32:11 | INFO | BI |   Duplicate rows: 0
+2026-07-08 20:32:11 | INFO | BI | CALL a function to summarize numeric columns in each dataset........
+2026-07-08 20:32:11 | INFO | BI | Numeric summary: customers
+2026-07-08 20:32:11 | INFO | BI | 
+       CustomerID
+count      201.00
+mean      1099.03
+std         58.12
+min       1000.00
+25%       1049.00
+50%       1099.00
+75%       1149.00
+max       1199.00
+2026-07-08 20:32:11 | INFO | BI | Numeric summary: products
+2026-07-08 20:32:11 | INFO | BI | 
+       ProductID  UnitPrice
+count     100.00     100.00
+mean     2049.50     507.77
+std        29.01     290.80
+min      2000.00      13.51
+25%      2024.75     255.53
+50%      2049.50     496.39
+75%      2074.25     771.28
+max      2099.00     976.44
+2026-07-08 20:32:11 | INFO | BI | Numeric summary: sales
+2026-07-08 20:32:11 | INFO | BI | 
+       TransactionID  CustomerID  ProductID  StoreID  CampaignID
+count        2400.00     2400.00    2400.00  2400.00     2207.00
+mean         1200.50     1086.75    2049.07   402.53        1.46
+std           692.96       57.32      28.67     1.13        1.12
+min             1.00     1000.00    2000.00   401.00        0.00
+25%           600.75     1034.00    2023.00   402.00        0.00
+50%          1200.50     1079.00    2046.00   403.00        1.00
+75%          1800.25     1132.00    2074.00   404.00        2.00
+max          2400.00     1199.00    2099.00   404.00        3.00
+2026-07-08 20:32:11 | INFO | BI | CALL a function to plot price distribution........
+2026-07-08 20:32:11 | INFO | BI | Plotting price distribution
+2026-07-08 20:32:12 | INFO | BI | Price distribution chart created
+2026-07-08 20:32:12 | INFO | BI | CALL a function to plot sales trend over time........
+2026-07-08 20:32:12 | INFO | BI | Plotting sales trend over time
+2026-07-08 20:32:12 | INFO | BI | Creating chart: Total Sales by Month
+2026-07-08 20:32:12 | INFO | BI | Sales trend chart created
+2026-07-08 20:32:12 | INFO | BI | CALL a function to summarize the datasets........
+2026-07-08 20:32:12 | INFO | BI | ========================
+2026-07-08 20:32:12 | INFO | BI | SUMMARY
+2026-07-08 20:32:12 | INFO | BI | ========================
+2026-07-08 20:32:12 | INFO | BI | Customers:  201 rows, 4 columns
+2026-07-08 20:32:12 | INFO | BI | Products:   100 rows, 4 columns
+2026-07-08 20:32:12 | INFO | BI | Sales:      2400 rows, 7 columns
+2026-07-08 20:32:12 | INFO | BI | ========================
+2026-07-08 20:32:12 | INFO | BI | ANALYST NOTES:
+2026-07-08 20:32:12 | INFO | BI | Any inconsistent data should be reviewed later.
+2026-07-08 20:32:12 | INFO | BI | Any duplicate rows should be reviewed later.
+2026-07-08 20:32:12 | INFO | BI | Cleaning and data preparation will be done in a later module.
+2026-07-08 20:32:12 | INFO | BI | ========================
+2026-07-08 20:32:12 | INFO | BI | CALL a function to show charts........
+2026-07-08 20:32:28 | INFO | BI | Workflow complete
+2026-07-08 20:32:28 | INFO | BI | CLOSE chart windows to continue.
+2026-07-08 20:32:28 | INFO | BI | Terminate this process with CTRL+c as needed.
+2026-07-08 20:32:28 | INFO | BI | ========================
+2026-07-08 20:32:28 | INFO | BI | Executed successfully!
+2026-07-08 20:32:28 | INFO | BI | ========================
+2026-07-08 20:51:45 | INFO | BI | === RUN START ===
+2026-07-08 20:51:45 | INFO | BI | project=BI
+2026-07-08 20:51:45 | INFO | BI | repo_dir=bintel-02-mining
+2026-07-08 20:51:45 | INFO | BI | python=3.14.6
+2026-07-08 20:51:45 | INFO | BI | os=Windows 10
+2026-07-08 20:51:45 | INFO | BI | shell=powershell
+2026-07-08 20:51:45 | INFO | BI | cwd=.
+2026-07-08 20:51:45 | INFO | BI | github_actions=False
+2026-07-08 20:51:45 | INFO | BI | ========================
+2026-07-08 20:51:45 | INFO | BI | START main()
+2026-07-08 20:51:45 | INFO | BI | ========================
+2026-07-08 20:51:45 | INFO | BI | Raw data:  = data\raw
+2026-07-08 20:51:45 | INFO | BI | Customers: = data\raw\customers_data.csv
+2026-07-08 20:51:45 | INFO | BI | Products:  = data\raw\products_data.csv
+2026-07-08 20:51:45 | INFO | BI | Sales:     = data\raw\sales_data.csv
+2026-07-08 20:51:45 | INFO | BI | CALL a function to load each dataset.............
+2026-07-08 20:51:45 | INFO | BI | Loading customers from data\raw\customers_data.csv
+2026-07-08 20:51:45 | INFO | BI | Loaded: 201 rows, 4 columns
+2026-07-08 20:51:45 | INFO | BI | Loading products from data\raw\products_data.csv
+2026-07-08 20:51:45 | INFO | BI | Loaded: 100 rows, 4 columns
+2026-07-08 20:51:45 | INFO | BI | Loading sales from data\raw\sales_data.csv
+2026-07-08 20:51:45 | INFO | BI | Loaded: 2400 rows, 7 columns
+2026-07-08 20:51:45 | INFO | BI | CALL a function to inspect each dataset..........
+2026-07-08 20:51:45 | INFO | BI | Inspecting customers
+2026-07-08 20:51:45 | INFO | BI |   Columns: ['CustomerID', 'Name', 'Region', 'JoinDate']
+2026-07-08 20:51:45 | INFO | BI |   Shape:   201 rows x 4 columns
+2026-07-08 20:51:45 | DEBUG | BI | 
+   CustomerID           Name   Region    JoinDate
+0        1000   Robert Gomez     West  2024-02-25
+1        1001     John Silva     East  2020-12-01
+2        1002  Mark Marshall  Central  2020-08-08
+3        1003  David Brennan    North  2020-05-21
+4        1004  Kerry Collins    North  2023-09-12
+
+2026-07-08 20:51:45 | INFO | BI | Inspecting products
+2026-07-08 20:51:45 | INFO | BI |   Columns: ['ProductID', 'ProductName', 'Category', 'UnitPrice']
+2026-07-08 20:51:45 | INFO | BI |   Shape:   100 rows x 4 columns
+2026-07-08 20:51:45 | DEBUG | BI | 
+   ProductID           ProductName     Category  UnitPrice
+0       2000    Electronics-Signal  Electronics     969.31
+1       2001     Electronics-Boost  Electronics     412.35
+2       2002         Office-Family       Office     866.00
+3       2003  Electronics-Training  Electronics     385.18
+4       2004          Office-Where       Office     927.25
+
+2026-07-08 20:51:45 | INFO | BI | Inspecting sales
+2026-07-08 20:51:45 | INFO | BI |   Columns: ['TransactionID', 'SaleDate', 'CustomerID', 'ProductID', 'StoreID', 'CampaignID', 'SaleAmount']
+2026-07-08 20:51:45 | INFO | BI |   Shape:   2400 rows x 7 columns
+2026-07-08 20:51:45 | DEBUG | BI | 
+   TransactionID    SaleDate  CustomerID  ProductID  StoreID  CampaignID SaleAmount
+0              1  2025-01-09        1020       2023      401         0.0     643.02
+1              2  2024-07-10        1034       2091      404         2.0     529.24
+2              3  2025-03-22        1087       2035      403         3.0    4313.72
+3              4  2024-12-27        1186       2015      404         NaN    1275.85
+4              5  2025-04-21        1049       2005      402         0.0    1739.64
+
+2026-07-08 20:51:45 | INFO | BI | CALL a function to check data quality of each dataset........
+2026-07-08 20:51:45 | INFO | BI | Quality check: customers
+2026-07-08 20:51:45 | INFO | BI |   Total missing values: 0
+2026-07-08 20:51:45 | INFO | BI |   Duplicate rows: 1
+2026-07-08 20:51:45 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-08 20:51:45 | INFO | BI | Quality check: products
+2026-07-08 20:51:45 | INFO | BI |   Total missing values: 0
+2026-07-08 20:51:45 | INFO | BI |   Duplicate rows: 0
+2026-07-08 20:51:45 | INFO | BI | Quality check: sales
+2026-07-08 20:51:45 | INFO | BI |   Total missing values: 193
+2026-07-08 20:51:45 | WARNING | BI |   Missing by column:
+CampaignID    193
+dtype: int64
+2026-07-08 20:51:45 | INFO | BI |   Duplicate rows: 0
+2026-07-08 20:51:45 | INFO | BI | CALL a function to summarize numeric columns in each dataset........
+2026-07-08 20:51:45 | INFO | BI | Numeric summary: customers
+2026-07-08 20:51:45 | INFO | BI | 
+       CustomerID
+count      201.00
+mean      1099.03
+std         58.12
+min       1000.00
+25%       1049.00
+50%       1099.00
+75%       1149.00
+max       1199.00
+2026-07-08 20:51:45 | INFO | BI | Numeric summary: products
+2026-07-08 20:51:45 | INFO | BI | 
+       ProductID  UnitPrice
+count     100.00     100.00
+mean     2049.50     507.77
+std        29.01     290.80
+min      2000.00      13.51
+25%      2024.75     255.53
+50%      2049.50     496.39
+75%      2074.25     771.28
+max      2099.00     976.44
+2026-07-08 20:51:45 | INFO | BI | Numeric summary: sales
+2026-07-08 20:51:45 | INFO | BI | 
+       TransactionID  CustomerID  ProductID  StoreID  CampaignID
+count        2400.00     2400.00    2400.00  2400.00     2207.00
+mean         1200.50     1086.75    2049.07   402.53        1.46
+std           692.96       57.32      28.67     1.13        1.12
+min             1.00     1000.00    2000.00   401.00        0.00
+25%           600.75     1034.00    2023.00   402.00        0.00
+50%          1200.50     1079.00    2046.00   403.00        1.00
+75%          1800.25     1132.00    2074.00   404.00        2.00
+max          2400.00     1199.00    2099.00   404.00        3.00
+2026-07-08 20:51:45 | INFO | BI | CALL a function to plot price distribution........
+2026-07-08 20:51:45 | INFO | BI | Plotting price distribution
+2026-07-08 20:51:46 | INFO | BI | Price distribution chart created
+2026-07-08 20:51:46 | INFO | BI | CALL a function to plot sales trend over time........
+2026-07-08 20:51:46 | INFO | BI | Plotting sales trend over time
+2026-07-08 20:51:46 | INFO | BI | Creating chart: Total Sales by Month
+2026-07-08 20:51:46 | INFO | BI | Sales trend chart created
+2026-07-08 20:51:46 | INFO | BI | Plotting sales by product
+2026-07-08 20:51:46 | INFO | BI | Plotting sales distribution
+2026-07-08 20:51:47 | INFO | BI | CALL a function to summarize the datasets........
+2026-07-08 20:51:47 | INFO | BI | ========================
+2026-07-08 20:51:47 | INFO | BI | SUMMARY
+2026-07-08 20:51:47 | INFO | BI | ========================
+2026-07-08 20:51:47 | INFO | BI | Customers:  201 rows, 4 columns
+2026-07-08 20:51:47 | INFO | BI | Products:   100 rows, 4 columns
+2026-07-08 20:51:47 | INFO | BI | Sales:      2400 rows, 7 columns
+2026-07-08 20:51:47 | INFO | BI | ========================
+2026-07-08 20:51:47 | INFO | BI | ANALYST NOTES:
+2026-07-08 20:51:47 | INFO | BI | Any inconsistent data should be reviewed later.
+2026-07-08 20:51:47 | INFO | BI | Any duplicate rows should be reviewed later.
+2026-07-08 20:51:47 | INFO | BI | Cleaning and data preparation will be done in a later module.
+2026-07-08 20:51:47 | INFO | BI | ========================
+2026-07-08 20:51:47 | INFO | BI | CALL a function to show charts........
+2026-07-08 20:56:25 | INFO | BI | Workflow complete
+2026-07-08 20:56:25 | INFO | BI | CLOSE chart windows to continue.
+2026-07-08 20:56:25 | INFO | BI | Terminate this process with CTRL+c as needed.
+2026-07-08 20:56:25 | INFO | BI | ========================
+2026-07-08 20:56:25 | INFO | BI | Executed successfully!
+2026-07-08 20:56:25 | INFO | BI | ========================
+2026-07-08 20:59:29 | INFO | BI | === RUN START ===
+2026-07-08 20:59:29 | INFO | BI | project=BI
+2026-07-08 20:59:29 | INFO | BI | repo_dir=bintel-02-mining
+2026-07-08 20:59:29 | INFO | BI | python=3.14.6
+2026-07-08 20:59:29 | INFO | BI | os=Windows 10
+2026-07-08 20:59:29 | INFO | BI | shell=powershell
+2026-07-08 20:59:29 | INFO | BI | cwd=.
+2026-07-08 20:59:29 | INFO | BI | github_actions=False
+2026-07-08 20:59:29 | INFO | BI | ========================
+2026-07-08 20:59:29 | INFO | BI | START main()
+2026-07-08 20:59:29 | INFO | BI | ========================
+2026-07-08 20:59:29 | INFO | BI | Raw data:  = data\raw
+2026-07-08 20:59:29 | INFO | BI | Customers: = data\raw\customers_data.csv
+2026-07-08 20:59:29 | INFO | BI | Products:  = data\raw\products_data.csv
+2026-07-08 20:59:29 | INFO | BI | Sales:     = data\raw\sales_data.csv
+2026-07-08 20:59:29 | INFO | BI | CALL a function to load each dataset.............
+2026-07-08 20:59:29 | INFO | BI | Loading customers from data\raw\customers_data.csv
+2026-07-08 20:59:29 | INFO | BI | Loaded: 201 rows, 4 columns
+2026-07-08 20:59:29 | INFO | BI | Loading products from data\raw\products_data.csv
+2026-07-08 20:59:29 | INFO | BI | Loaded: 100 rows, 4 columns
+2026-07-08 20:59:29 | INFO | BI | Loading sales from data\raw\sales_data.csv
+2026-07-08 20:59:29 | INFO | BI | Loaded: 2400 rows, 7 columns
+2026-07-08 20:59:29 | INFO | BI | CALL a function to inspect each dataset..........
+2026-07-08 20:59:29 | INFO | BI | Inspecting customers
+2026-07-08 20:59:29 | INFO | BI |   Columns: ['CustomerID', 'Name', 'Region', 'JoinDate']
+2026-07-08 20:59:29 | INFO | BI |   Shape:   201 rows x 4 columns
+2026-07-08 20:59:29 | DEBUG | BI | 
+   CustomerID           Name   Region    JoinDate
+0        1000   Robert Gomez     West  2024-02-25
+1        1001     John Silva     East  2020-12-01
+2        1002  Mark Marshall  Central  2020-08-08
+3        1003  David Brennan    North  2020-05-21
+4        1004  Kerry Collins    North  2023-09-12
+
+2026-07-08 20:59:29 | INFO | BI | Inspecting products
+2026-07-08 20:59:29 | INFO | BI |   Columns: ['ProductID', 'ProductName', 'Category', 'UnitPrice']
+2026-07-08 20:59:29 | INFO | BI |   Shape:   100 rows x 4 columns
+2026-07-08 20:59:29 | DEBUG | BI | 
+   ProductID           ProductName     Category  UnitPrice
+0       2000    Electronics-Signal  Electronics     969.31
+1       2001     Electronics-Boost  Electronics     412.35
+2       2002         Office-Family       Office     866.00
+3       2003  Electronics-Training  Electronics     385.18
+4       2004          Office-Where       Office     927.25
+
+2026-07-08 20:59:29 | INFO | BI | Inspecting sales
+2026-07-08 20:59:29 | INFO | BI |   Columns: ['TransactionID', 'SaleDate', 'CustomerID', 'ProductID', 'StoreID', 'CampaignID', 'SaleAmount']
+2026-07-08 20:59:29 | INFO | BI |   Shape:   2400 rows x 7 columns
+2026-07-08 20:59:29 | DEBUG | BI | 
+   TransactionID    SaleDate  CustomerID  ProductID  StoreID  CampaignID SaleAmount
+0              1  2025-01-09        1020       2023      401         0.0     643.02
+1              2  2024-07-10        1034       2091      404         2.0     529.24
+2              3  2025-03-22        1087       2035      403         3.0    4313.72
+3              4  2024-12-27        1186       2015      404         NaN    1275.85
+4              5  2025-04-21        1049       2005      402         0.0    1739.64
+
+2026-07-08 20:59:29 | INFO | BI | CALL a function to check data quality of each dataset........
+2026-07-08 20:59:29 | INFO | BI | Quality check: customers
+2026-07-08 20:59:29 | INFO | BI |   Total missing values: 0
+2026-07-08 20:59:29 | INFO | BI |   Duplicate rows: 1
+2026-07-08 20:59:29 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-08 20:59:29 | INFO | BI | Quality check: products
+2026-07-08 20:59:29 | INFO | BI |   Total missing values: 0
+2026-07-08 20:59:29 | INFO | BI |   Duplicate rows: 0
+2026-07-08 20:59:29 | INFO | BI | Quality check: sales
+2026-07-08 20:59:29 | INFO | BI |   Total missing values: 193
+2026-07-08 20:59:29 | WARNING | BI |   Missing by column:
+CampaignID    193
+dtype: int64
+2026-07-08 20:59:29 | INFO | BI |   Duplicate rows: 0
+2026-07-08 20:59:29 | INFO | BI | CALL a function to summarize numeric columns in each dataset........
+2026-07-08 20:59:29 | INFO | BI | Numeric summary: customers
+2026-07-08 20:59:29 | INFO | BI | 
+       CustomerID
+count      201.00
+mean      1099.03
+std         58.12
+min       1000.00
+25%       1049.00
+50%       1099.00
+75%       1149.00
+max       1199.00
+2026-07-08 20:59:29 | INFO | BI | Numeric summary: products
+2026-07-08 20:59:29 | INFO | BI | 
+       ProductID  UnitPrice
+count     100.00     100.00
+mean     2049.50     507.77
+std        29.01     290.80
+min      2000.00      13.51
+25%      2024.75     255.53
+50%      2049.50     496.39
+75%      2074.25     771.28
+max      2099.00     976.44
+2026-07-08 20:59:29 | INFO | BI | Numeric summary: sales
+2026-07-08 20:59:29 | INFO | BI | 
+       TransactionID  CustomerID  ProductID  StoreID  CampaignID
+count        2400.00     2400.00    2400.00  2400.00     2207.00
+mean         1200.50     1086.75    2049.07   402.53        1.46
+std           692.96       57.32      28.67     1.13        1.12
+min             1.00     1000.00    2000.00   401.00        0.00
+25%           600.75     1034.00    2023.00   402.00        0.00
+50%          1200.50     1079.00    2046.00   403.00        1.00
+75%          1800.25     1132.00    2074.00   404.00        2.00
+max          2400.00     1199.00    2099.00   404.00        3.00
+2026-07-08 20:59:29 | INFO | BI | CALL a function to plot price distribution........
+2026-07-08 20:59:29 | INFO | BI | Plotting price distribution
+2026-07-08 20:59:29 | INFO | BI | Price distribution chart created
+2026-07-08 20:59:29 | INFO | BI | CALL a function to plot sales trend over time........
+2026-07-08 20:59:29 | INFO | BI | Plotting sales trend over time
+2026-07-08 20:59:29 | INFO | BI | Creating chart: Total Sales by Month
+2026-07-08 20:59:29 | INFO | BI | Sales trend chart created
+2026-07-08 20:59:29 | INFO | BI | Plotting sales by product
+2026-07-08 20:59:29 | INFO | BI | Plotting sales distribution
+2026-07-08 20:59:30 | INFO | BI | CALL a function to summarize the datasets........
+2026-07-08 20:59:30 | INFO | BI | ========================
+2026-07-08 20:59:30 | INFO | BI | SUMMARY
+2026-07-08 20:59:30 | INFO | BI | ========================
+2026-07-08 20:59:30 | INFO | BI | Customers:  201 rows, 4 columns
+2026-07-08 20:59:30 | INFO | BI | Products:   100 rows, 4 columns
+2026-07-08 20:59:30 | INFO | BI | Sales:      2400 rows, 7 columns
+2026-07-08 20:59:30 | INFO | BI | ========================
+2026-07-08 20:59:30 | INFO | BI | ANALYST NOTES:
+2026-07-08 20:59:30 | INFO | BI | Any inconsistent data should be reviewed later.
+2026-07-08 20:59:30 | INFO | BI | Any duplicate rows should be reviewed later.
+2026-07-08 20:59:30 | INFO | BI | Cleaning and data preparation will be done in a later module.
+2026-07-08 20:59:30 | INFO | BI | ========================
+2026-07-08 20:59:30 | INFO | BI | CALL a function to show charts........
+2026-07-08 20:59:46 | INFO | BI | Workflow complete
+2026-07-08 20:59:46 | INFO | BI | CLOSE chart windows to continue.
+2026-07-08 20:59:46 | INFO | BI | Terminate this process with CTRL+c as needed.
+2026-07-08 20:59:46 | INFO | BI | ========================
+2026-07-08 20:59:46 | INFO | BI | Executed successfully!
+2026-07-08 20:59:46 | INFO | BI | ========================
+2026-07-08 21:00:29 | INFO | BI | === RUN START ===
+2026-07-08 21:00:29 | INFO | BI | project=BI
+2026-07-08 21:00:29 | INFO | BI | repo_dir=bintel-02-mining
+2026-07-08 21:00:29 | INFO | BI | python=3.14.6
+2026-07-08 21:00:29 | INFO | BI | os=Windows 10
+2026-07-08 21:00:29 | INFO | BI | shell=powershell
+2026-07-08 21:00:29 | INFO | BI | cwd=.
+2026-07-08 21:00:29 | INFO | BI | github_actions=False
+2026-07-08 21:00:29 | INFO | BI | ========================
+2026-07-08 21:00:29 | INFO | BI | START main()
+2026-07-08 21:00:29 | INFO | BI | ========================
+2026-07-08 21:00:29 | INFO | BI | Raw data:  = data\raw
+2026-07-08 21:00:29 | INFO | BI | Customers: = data\raw\customers_data.csv
+2026-07-08 21:00:29 | INFO | BI | Products:  = data\raw\products_data.csv
+2026-07-08 21:00:29 | INFO | BI | Sales:     = data\raw\sales_data.csv
+2026-07-08 21:00:29 | INFO | BI | CALL a function to load each dataset.............
+2026-07-08 21:00:29 | INFO | BI | Loading customers from data\raw\customers_data.csv
+2026-07-08 21:00:29 | INFO | BI | Loaded: 201 rows, 4 columns
+2026-07-08 21:00:29 | INFO | BI | Loading products from data\raw\products_data.csv
+2026-07-08 21:00:29 | INFO | BI | Loaded: 100 rows, 4 columns
+2026-07-08 21:00:29 | INFO | BI | Loading sales from data\raw\sales_data.csv
+2026-07-08 21:00:29 | INFO | BI | Loaded: 2400 rows, 7 columns
+2026-07-08 21:00:29 | INFO | BI | CALL a function to inspect each dataset..........
+2026-07-08 21:00:29 | INFO | BI | Inspecting customers
+2026-07-08 21:00:29 | INFO | BI |   Columns: ['CustomerID', 'Name', 'Region', 'JoinDate']
+2026-07-08 21:00:29 | INFO | BI |   Shape:   201 rows x 4 columns
+2026-07-08 21:00:29 | DEBUG | BI | 
+   CustomerID           Name   Region    JoinDate
+0        1000   Robert Gomez     West  2024-02-25
+1        1001     John Silva     East  2020-12-01
+2        1002  Mark Marshall  Central  2020-08-08
+3        1003  David Brennan    North  2020-05-21
+4        1004  Kerry Collins    North  2023-09-12
+
+2026-07-08 21:00:29 | INFO | BI | Inspecting products
+2026-07-08 21:00:29 | INFO | BI |   Columns: ['ProductID', 'ProductName', 'Category', 'UnitPrice']
+2026-07-08 21:00:29 | INFO | BI |   Shape:   100 rows x 4 columns
+2026-07-08 21:00:29 | DEBUG | BI | 
+   ProductID           ProductName     Category  UnitPrice
+0       2000    Electronics-Signal  Electronics     969.31
+1       2001     Electronics-Boost  Electronics     412.35
+2       2002         Office-Family       Office     866.00
+3       2003  Electronics-Training  Electronics     385.18
+4       2004          Office-Where       Office     927.25
+
+2026-07-08 21:00:29 | INFO | BI | Inspecting sales
+2026-07-08 21:00:29 | INFO | BI |   Columns: ['TransactionID', 'SaleDate', 'CustomerID', 'ProductID', 'StoreID', 'CampaignID', 'SaleAmount']
+2026-07-08 21:00:29 | INFO | BI |   Shape:   2400 rows x 7 columns
+2026-07-08 21:00:29 | DEBUG | BI | 
+   TransactionID    SaleDate  CustomerID  ProductID  StoreID  CampaignID SaleAmount
+0              1  2025-01-09        1020       2023      401         0.0     643.02
+1              2  2024-07-10        1034       2091      404         2.0     529.24
+2              3  2025-03-22        1087       2035      403         3.0    4313.72
+3              4  2024-12-27        1186       2015      404         NaN    1275.85
+4              5  2025-04-21        1049       2005      402         0.0    1739.64
+
+2026-07-08 21:00:29 | INFO | BI | CALL a function to check data quality of each dataset........
+2026-07-08 21:00:29 | INFO | BI | Quality check: customers
+2026-07-08 21:00:29 | INFO | BI |   Total missing values: 0
+2026-07-08 21:00:29 | INFO | BI |   Duplicate rows: 1
+2026-07-08 21:00:29 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-08 21:00:29 | INFO | BI | Quality check: products
+2026-07-08 21:00:29 | INFO | BI |   Total missing values: 0
+2026-07-08 21:00:29 | INFO | BI |   Duplicate rows: 0
+2026-07-08 21:00:29 | INFO | BI | Quality check: sales
+2026-07-08 21:00:29 | INFO | BI |   Total missing values: 193
+2026-07-08 21:00:29 | WARNING | BI |   Missing by column:
+CampaignID    193
+dtype: int64
+2026-07-08 21:00:29 | INFO | BI |   Duplicate rows: 0
+2026-07-08 21:00:29 | INFO | BI | CALL a function to summarize numeric columns in each dataset........
+2026-07-08 21:00:29 | INFO | BI | Numeric summary: customers
+2026-07-08 21:00:29 | INFO | BI | 
+       CustomerID
+count      201.00
+mean      1099.03
+std         58.12
+min       1000.00
+25%       1049.00
+50%       1099.00
+75%       1149.00
+max       1199.00
+2026-07-08 21:00:29 | INFO | BI | Numeric summary: products
+2026-07-08 21:00:29 | INFO | BI | 
+       ProductID  UnitPrice
+count     100.00     100.00
+mean     2049.50     507.77
+std        29.01     290.80
+min      2000.00      13.51
+25%      2024.75     255.53
+50%      2049.50     496.39
+75%      2074.25     771.28
+max      2099.00     976.44
+2026-07-08 21:00:29 | INFO | BI | Numeric summary: sales
+2026-07-08 21:00:29 | INFO | BI | 
+       TransactionID  CustomerID  ProductID  StoreID  CampaignID
+count        2400.00     2400.00    2400.00  2400.00     2207.00
+mean         1200.50     1086.75    2049.07   402.53        1.46
+std           692.96       57.32      28.67     1.13        1.12
+min             1.00     1000.00    2000.00   401.00        0.00
+25%           600.75     1034.00    2023.00   402.00        0.00
+50%          1200.50     1079.00    2046.00   403.00        1.00
+75%          1800.25     1132.00    2074.00   404.00        2.00
+max          2400.00     1199.00    2099.00   404.00        3.00
+2026-07-08 21:00:29 | INFO | BI | CALL a function to plot price distribution........
+2026-07-08 21:00:29 | INFO | BI | Plotting price distribution
+2026-07-08 21:00:29 | INFO | BI | Price distribution chart created
+2026-07-08 21:00:29 | INFO | BI | CALL a function to plot sales trend over time........
+2026-07-08 21:00:29 | INFO | BI | Plotting sales trend over time
+2026-07-08 21:00:29 | INFO | BI | Creating chart: Total Sales by Month
+2026-07-08 21:00:29 | INFO | BI | Sales trend chart created
+2026-07-08 21:00:29 | INFO | BI | Plotting sales by product
+2026-07-08 21:00:30 | INFO | BI | Plotting sales distribution
+2026-07-08 21:00:30 | INFO | BI | CALL a function to summarize the datasets........
+2026-07-08 21:00:30 | INFO | BI | ========================
+2026-07-08 21:00:30 | INFO | BI | SUMMARY
+2026-07-08 21:00:30 | INFO | BI | ========================
+2026-07-08 21:00:30 | INFO | BI | Customers:  201 rows, 4 columns
+2026-07-08 21:00:30 | INFO | BI | Products:   100 rows, 4 columns
+2026-07-08 21:00:30 | INFO | BI | Sales:      2400 rows, 7 columns
+2026-07-08 21:00:30 | INFO | BI | ========================
+2026-07-08 21:00:30 | INFO | BI | ANALYST NOTES:
+2026-07-08 21:00:30 | INFO | BI | Any inconsistent data should be reviewed later.
+2026-07-08 21:00:30 | INFO | BI | Any duplicate rows should be reviewed later.
+2026-07-08 21:00:30 | INFO | BI | Cleaning and data preparation will be done in a later module.
+2026-07-08 21:00:30 | INFO | BI | ========================
+2026-07-08 21:00:30 | INFO | BI | CALL a function to show charts........
+2026-07-08 21:01:03 | INFO | BI | Workflow complete
+2026-07-08 21:01:03 | INFO | BI | CLOSE chart windows to continue.
+2026-07-08 21:01:03 | INFO | BI | Terminate this process with CTRL+c as needed.
+2026-07-08 21:01:03 | INFO | BI | ========================
+2026-07-08 21:01:03 | INFO | BI | Executed successfully!
+2026-07-08 21:01:03 | INFO | BI | ========================
+2026-07-08 21:02:21 | INFO | BI | === RUN START ===
+2026-07-08 21:02:21 | INFO | BI | project=BI
+2026-07-08 21:02:21 | INFO | BI | repo_dir=bintel-02-mining
+2026-07-08 21:02:21 | INFO | BI | python=3.14.6
+2026-07-08 21:02:21 | INFO | BI | os=Windows 10
+2026-07-08 21:02:21 | INFO | BI | shell=powershell
+2026-07-08 21:02:21 | INFO | BI | cwd=.
+2026-07-08 21:02:21 | INFO | BI | github_actions=False
+2026-07-08 21:02:21 | INFO | BI | ========================
+2026-07-08 21:02:21 | INFO | BI | START main()
+2026-07-08 21:02:21 | INFO | BI | ========================
+2026-07-08 21:02:21 | INFO | BI | Raw data:  = data\raw
+2026-07-08 21:02:21 | INFO | BI | Customers: = data\raw\customers_data.csv
+2026-07-08 21:02:21 | INFO | BI | Products:  = data\raw\products_data.csv
+2026-07-08 21:02:21 | INFO | BI | Sales:     = data\raw\sales_data.csv
+2026-07-08 21:02:21 | INFO | BI | CALL a function to load each dataset.............
+2026-07-08 21:02:21 | INFO | BI | Loading customers from data\raw\customers_data.csv
+2026-07-08 21:02:21 | INFO | BI | Loaded: 201 rows, 4 columns
+2026-07-08 21:02:21 | INFO | BI | Loading products from data\raw\products_data.csv
+2026-07-08 21:02:21 | INFO | BI | Loaded: 100 rows, 4 columns
+2026-07-08 21:02:21 | INFO | BI | Loading sales from data\raw\sales_data.csv
+2026-07-08 21:02:21 | INFO | BI | Loaded: 2400 rows, 7 columns
+2026-07-08 21:02:21 | INFO | BI | CALL a function to inspect each dataset..........
+2026-07-08 21:02:21 | INFO | BI | Inspecting customers
+2026-07-08 21:02:21 | INFO | BI |   Columns: ['CustomerID', 'Name', 'Region', 'JoinDate']
+2026-07-08 21:02:21 | INFO | BI |   Shape:   201 rows x 4 columns
+2026-07-08 21:02:21 | DEBUG | BI | 
+   CustomerID           Name   Region    JoinDate
+0        1000   Robert Gomez     West  2024-02-25
+1        1001     John Silva     East  2020-12-01
+2        1002  Mark Marshall  Central  2020-08-08
+3        1003  David Brennan    North  2020-05-21
+4        1004  Kerry Collins    North  2023-09-12
+
+2026-07-08 21:02:21 | INFO | BI | Inspecting products
+2026-07-08 21:02:21 | INFO | BI |   Columns: ['ProductID', 'ProductName', 'Category', 'UnitPrice']
+2026-07-08 21:02:21 | INFO | BI |   Shape:   100 rows x 4 columns
+2026-07-08 21:02:21 | DEBUG | BI | 
+   ProductID           ProductName     Category  UnitPrice
+0       2000    Electronics-Signal  Electronics     969.31
+1       2001     Electronics-Boost  Electronics     412.35
+2       2002         Office-Family       Office     866.00
+3       2003  Electronics-Training  Electronics     385.18
+4       2004          Office-Where       Office     927.25
+
+2026-07-08 21:02:21 | INFO | BI | Inspecting sales
+2026-07-08 21:02:21 | INFO | BI |   Columns: ['TransactionID', 'SaleDate', 'CustomerID', 'ProductID', 'StoreID', 'CampaignID', 'SaleAmount']
+2026-07-08 21:02:21 | INFO | BI |   Shape:   2400 rows x 7 columns
+2026-07-08 21:02:21 | DEBUG | BI | 
+   TransactionID    SaleDate  CustomerID  ProductID  StoreID  CampaignID SaleAmount
+0              1  2025-01-09        1020       2023      401         0.0     643.02
+1              2  2024-07-10        1034       2091      404         2.0     529.24
+2              3  2025-03-22        1087       2035      403         3.0    4313.72
+3              4  2024-12-27        1186       2015      404         NaN    1275.85
+4              5  2025-04-21        1049       2005      402         0.0    1739.64
+
+2026-07-08 21:02:21 | INFO | BI | CALL a function to check data quality of each dataset........
+2026-07-08 21:02:21 | INFO | BI | Quality check: customers
+2026-07-08 21:02:21 | INFO | BI |   Total missing values: 0
+2026-07-08 21:02:21 | INFO | BI |   Duplicate rows: 1
+2026-07-08 21:02:21 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-08 21:02:21 | INFO | BI | Quality check: products
+2026-07-08 21:02:21 | INFO | BI |   Total missing values: 0
+2026-07-08 21:02:21 | INFO | BI |   Duplicate rows: 0
+2026-07-08 21:02:21 | INFO | BI | Quality check: sales
+2026-07-08 21:02:21 | INFO | BI |   Total missing values: 193
+2026-07-08 21:02:21 | WARNING | BI |   Missing by column:
+CampaignID    193
+dtype: int64
+2026-07-08 21:02:21 | INFO | BI |   Duplicate rows: 0
+2026-07-08 21:02:21 | INFO | BI | CALL a function to summarize numeric columns in each dataset........
+2026-07-08 21:02:21 | INFO | BI | Numeric summary: customers
+2026-07-08 21:02:21 | INFO | BI | 
+       CustomerID
+count      201.00
+mean      1099.03
+std         58.12
+min       1000.00
+25%       1049.00
+50%       1099.00
+75%       1149.00
+max       1199.00
+2026-07-08 21:02:21 | INFO | BI | Numeric summary: products
+2026-07-08 21:02:21 | INFO | BI | 
+       ProductID  UnitPrice
+count     100.00     100.00
+mean     2049.50     507.77
+std        29.01     290.80
+min      2000.00      13.51
+25%      2024.75     255.53
+50%      2049.50     496.39
+75%      2074.25     771.28
+max      2099.00     976.44
+2026-07-08 21:02:21 | INFO | BI | Numeric summary: sales
+2026-07-08 21:02:21 | INFO | BI | 
+       TransactionID  CustomerID  ProductID  StoreID  CampaignID
+count        2400.00     2400.00    2400.00  2400.00     2207.00
+mean         1200.50     1086.75    2049.07   402.53        1.46
+std           692.96       57.32      28.67     1.13        1.12
+min             1.00     1000.00    2000.00   401.00        0.00
+25%           600.75     1034.00    2023.00   402.00        0.00
+50%          1200.50     1079.00    2046.00   403.00        1.00
+75%          1800.25     1132.00    2074.00   404.00        2.00
+max          2400.00     1199.00    2099.00   404.00        3.00
+2026-07-08 21:02:21 | INFO | BI | CALL a function to plot price distribution........
+2026-07-08 21:02:21 | INFO | BI | Plotting price distribution
+2026-07-08 21:02:22 | INFO | BI | Price distribution chart created
+2026-07-08 21:02:22 | INFO | BI | CALL a function to plot sales trend over time........
+2026-07-08 21:02:22 | INFO | BI | Plotting sales trend over time
+2026-07-08 21:02:22 | INFO | BI | Creating chart: Total Sales by Month
+2026-07-08 21:02:22 | INFO | BI | Sales trend chart created
+2026-07-08 21:02:22 | INFO | BI | Plotting sales by product
+2026-07-08 21:02:22 | INFO | BI | Plotting sales distribution
+2026-07-08 21:02:22 | INFO | BI | CALL a function to summarize the datasets........
+2026-07-08 21:02:22 | INFO | BI | ========================
+2026-07-08 21:02:22 | INFO | BI | SUMMARY
+2026-07-08 21:02:22 | INFO | BI | ========================
+2026-07-08 21:02:22 | INFO | BI | Customers:  201 rows, 4 columns
+2026-07-08 21:02:22 | INFO | BI | Products:   100 rows, 4 columns
+2026-07-08 21:02:22 | INFO | BI | Sales:      2400 rows, 7 columns
+2026-07-08 21:02:22 | INFO | BI | ========================
+2026-07-08 21:02:22 | INFO | BI | ANALYST NOTES:
+2026-07-08 21:02:22 | INFO | BI | Any inconsistent data should be reviewed later.
+2026-07-08 21:02:22 | INFO | BI | Any duplicate rows should be reviewed later.
+2026-07-08 21:02:22 | INFO | BI | Cleaning and data preparation will be done in a later module.
+2026-07-08 21:02:22 | INFO | BI | ========================
+2026-07-08 21:02:22 | INFO | BI | CALL a function to show charts........
+2026-07-08 21:02:34 | INFO | BI | Workflow complete
+2026-07-08 21:02:34 | INFO | BI | CLOSE chart windows to continue.
+2026-07-08 21:02:34 | INFO | BI | Terminate this process with CTRL+c as needed.
+2026-07-08 21:02:34 | INFO | BI | ========================
+2026-07-08 21:02:34 | INFO | BI | Executed successfully!
+2026-07-08 21:02:34 | INFO | BI | ========================
+2026-07-08 21:04:57 | INFO | BI | === RUN START ===
+2026-07-08 21:04:57 | INFO | BI | project=BI
+2026-07-08 21:04:57 | INFO | BI | repo_dir=bintel-02-mining
+2026-07-08 21:04:57 | INFO | BI | python=3.14.6
+2026-07-08 21:04:57 | INFO | BI | os=Windows 10
+2026-07-08 21:04:57 | INFO | BI | shell=powershell
+2026-07-08 21:04:57 | INFO | BI | cwd=.
+2026-07-08 21:04:57 | INFO | BI | github_actions=False
+2026-07-08 21:04:57 | INFO | BI | ========================
+2026-07-08 21:04:57 | INFO | BI | START main()
+2026-07-08 21:04:57 | INFO | BI | ========================
+2026-07-08 21:04:57 | INFO | BI | Raw data:  = data\raw
+2026-07-08 21:04:57 | INFO | BI | Customers: = data\raw\customers_data.csv
+2026-07-08 21:04:57 | INFO | BI | Products:  = data\raw\products_data.csv
+2026-07-08 21:04:57 | INFO | BI | Sales:     = data\raw\sales_data.csv
+2026-07-08 21:04:57 | INFO | BI | CALL a function to load each dataset.............
+2026-07-08 21:04:57 | INFO | BI | Loading customers from data\raw\customers_data.csv
+2026-07-08 21:04:57 | INFO | BI | Loaded: 201 rows, 4 columns
+2026-07-08 21:04:57 | INFO | BI | Loading products from data\raw\products_data.csv
+2026-07-08 21:04:57 | INFO | BI | Loaded: 100 rows, 4 columns
+2026-07-08 21:04:57 | INFO | BI | Loading sales from data\raw\sales_data.csv
+2026-07-08 21:04:57 | INFO | BI | Loaded: 2400 rows, 7 columns
+2026-07-08 21:04:57 | INFO | BI | CALL a function to inspect each dataset..........
+2026-07-08 21:04:57 | INFO | BI | Inspecting customers
+2026-07-08 21:04:57 | INFO | BI |   Columns: ['CustomerID', 'Name', 'Region', 'JoinDate']
+2026-07-08 21:04:57 | INFO | BI |   Shape:   201 rows x 4 columns
+2026-07-08 21:04:57 | DEBUG | BI | 
+   CustomerID           Name   Region    JoinDate
+0        1000   Robert Gomez     West  2024-02-25
+1        1001     John Silva     East  2020-12-01
+2        1002  Mark Marshall  Central  2020-08-08
+3        1003  David Brennan    North  2020-05-21
+4        1004  Kerry Collins    North  2023-09-12
+
+2026-07-08 21:04:57 | INFO | BI | Inspecting products
+2026-07-08 21:04:57 | INFO | BI |   Columns: ['ProductID', 'ProductName', 'Category', 'UnitPrice']
+2026-07-08 21:04:57 | INFO | BI |   Shape:   100 rows x 4 columns
+2026-07-08 21:04:57 | DEBUG | BI | 
+   ProductID           ProductName     Category  UnitPrice
+0       2000    Electronics-Signal  Electronics     969.31
+1       2001     Electronics-Boost  Electronics     412.35
+2       2002         Office-Family       Office     866.00
+3       2003  Electronics-Training  Electronics     385.18
+4       2004          Office-Where       Office     927.25
+
+2026-07-08 21:04:57 | INFO | BI | Inspecting sales
+2026-07-08 21:04:57 | INFO | BI |   Columns: ['TransactionID', 'SaleDate', 'CustomerID', 'ProductID', 'StoreID', 'CampaignID', 'SaleAmount']
+2026-07-08 21:04:57 | INFO | BI |   Shape:   2400 rows x 7 columns
+2026-07-08 21:04:57 | DEBUG | BI | 
+   TransactionID    SaleDate  CustomerID  ProductID  StoreID  CampaignID SaleAmount
+0              1  2025-01-09        1020       2023      401         0.0     643.02
+1              2  2024-07-10        1034       2091      404         2.0     529.24
+2              3  2025-03-22        1087       2035      403         3.0    4313.72
+3              4  2024-12-27        1186       2015      404         NaN    1275.85
+4              5  2025-04-21        1049       2005      402         0.0    1739.64
+
+2026-07-08 21:04:57 | INFO | BI | CALL a function to check data quality of each dataset........
+2026-07-08 21:04:57 | INFO | BI | Quality check: customers
+2026-07-08 21:04:57 | INFO | BI |   Total missing values: 0
+2026-07-08 21:04:57 | INFO | BI |   Duplicate rows: 1
+2026-07-08 21:04:57 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-08 21:04:57 | INFO | BI | Quality check: products
+2026-07-08 21:04:57 | INFO | BI |   Total missing values: 0
+2026-07-08 21:04:57 | INFO | BI |   Duplicate rows: 0
+2026-07-08 21:04:57 | INFO | BI | Quality check: sales
+2026-07-08 21:04:57 | INFO | BI |   Total missing values: 193
+2026-07-08 21:04:57 | WARNING | BI |   Missing by column:
+CampaignID    193
+dtype: int64
+2026-07-08 21:04:57 | INFO | BI |   Duplicate rows: 0
+2026-07-08 21:04:57 | INFO | BI | CALL a function to summarize numeric columns in each dataset........
+2026-07-08 21:04:57 | INFO | BI | Numeric summary: customers
+2026-07-08 21:04:57 | INFO | BI | 
+       CustomerID
+count      201.00
+mean      1099.03
+std         58.12
+min       1000.00
+25%       1049.00
+50%       1099.00
+75%       1149.00
+max       1199.00
+2026-07-08 21:04:57 | INFO | BI | Numeric summary: products
+2026-07-08 21:04:57 | INFO | BI | 
+       ProductID  UnitPrice
+count     100.00     100.00
+mean     2049.50     507.77
+std        29.01     290.80
+min      2000.00      13.51
+25%      2024.75     255.53
+50%      2049.50     496.39
+75%      2074.25     771.28
+max      2099.00     976.44
+2026-07-08 21:04:57 | INFO | BI | Numeric summary: sales
+2026-07-08 21:04:57 | INFO | BI | 
+       TransactionID  CustomerID  ProductID  StoreID  CampaignID
+count        2400.00     2400.00    2400.00  2400.00     2207.00
+mean         1200.50     1086.75    2049.07   402.53        1.46
+std           692.96       57.32      28.67     1.13        1.12
+min             1.00     1000.00    2000.00   401.00        0.00
+25%           600.75     1034.00    2023.00   402.00        0.00
+50%          1200.50     1079.00    2046.00   403.00        1.00
+75%          1800.25     1132.00    2074.00   404.00        2.00
+max          2400.00     1199.00    2099.00   404.00        3.00
+2026-07-08 21:04:57 | INFO | BI | CALL a function to plot price distribution........
+2026-07-08 21:04:57 | INFO | BI | Plotting price distribution
+2026-07-08 21:04:57 | INFO | BI | Price distribution chart created
+2026-07-08 21:04:57 | INFO | BI | CALL a function to plot sales trend over time........
+2026-07-08 21:04:57 | INFO | BI | Plotting sales trend over time
+2026-07-08 21:04:57 | INFO | BI | Creating chart: Total Sales by Month
+2026-07-08 21:04:57 | INFO | BI | Sales trend chart created
+2026-07-08 21:04:57 | INFO | BI | Plotting sales by product
+2026-07-08 21:04:57 | INFO | BI | Plotting sales distribution
+2026-07-08 21:04:58 | INFO | BI | CALL a function to summarize the datasets........
+2026-07-08 21:04:58 | INFO | BI | ========================
+2026-07-08 21:04:58 | INFO | BI | SUMMARY
+2026-07-08 21:04:58 | INFO | BI | ========================
+2026-07-08 21:04:58 | INFO | BI | Customers:  201 rows, 4 columns
+2026-07-08 21:04:58 | INFO | BI | Products:   100 rows, 4 columns
+2026-07-08 21:04:58 | INFO | BI | Sales:      2400 rows, 7 columns
+2026-07-08 21:04:58 | INFO | BI | ========================
+2026-07-08 21:04:58 | INFO | BI | ANALYST NOTES:
+2026-07-08 21:04:58 | INFO | BI | Any inconsistent data should be reviewed later.
+2026-07-08 21:04:58 | INFO | BI | Any duplicate rows should be reviewed later.
+2026-07-08 21:04:58 | INFO | BI | Cleaning and data preparation will be done in a later module.
+2026-07-08 21:04:58 | INFO | BI | ========================
+2026-07-08 21:04:58 | INFO | BI | CALL a function to show charts........
+2026-07-08 21:05:58 | INFO | BI | Workflow complete
+2026-07-08 21:05:58 | INFO | BI | CLOSE chart windows to continue.
+2026-07-08 21:05:58 | INFO | BI | Terminate this process with CTRL+c as needed.
+2026-07-08 21:05:58 | INFO | BI | ========================
+2026-07-08 21:05:58 | INFO | BI | Executed successfully!
+2026-07-08 21:05:58 | INFO | BI | ========================
+2026-07-08 21:07:08 | INFO | BI | === RUN START ===
+2026-07-08 21:07:08 | INFO | BI | project=BI
+2026-07-08 21:07:08 | INFO | BI | repo_dir=bintel-02-mining
+2026-07-08 21:07:08 | INFO | BI | python=3.14.6
+2026-07-08 21:07:08 | INFO | BI | os=Windows 10
+2026-07-08 21:07:08 | INFO | BI | shell=powershell
+2026-07-08 21:07:08 | INFO | BI | cwd=.
+2026-07-08 21:07:08 | INFO | BI | github_actions=False
+2026-07-08 21:07:08 | INFO | BI | ========================
+2026-07-08 21:07:08 | INFO | BI | START main()
+2026-07-08 21:07:08 | INFO | BI | ========================
+2026-07-08 21:07:08 | INFO | BI | Raw data:  = data\raw
+2026-07-08 21:07:08 | INFO | BI | Customers: = data\raw\customers_data.csv
+2026-07-08 21:07:08 | INFO | BI | Products:  = data\raw\products_data.csv
+2026-07-08 21:07:08 | INFO | BI | Sales:     = data\raw\sales_data.csv
+2026-07-08 21:07:08 | INFO | BI | CALL a function to load each dataset.............
+2026-07-08 21:07:08 | INFO | BI | Loading customers from data\raw\customers_data.csv
+2026-07-08 21:07:08 | INFO | BI | Loaded: 201 rows, 4 columns
+2026-07-08 21:07:08 | INFO | BI | Loading products from data\raw\products_data.csv
+2026-07-08 21:07:08 | INFO | BI | Loaded: 100 rows, 4 columns
+2026-07-08 21:07:08 | INFO | BI | Loading sales from data\raw\sales_data.csv
+2026-07-08 21:07:08 | INFO | BI | Loaded: 2400 rows, 7 columns
+2026-07-08 21:07:08 | INFO | BI | CALL a function to inspect each dataset..........
+2026-07-08 21:07:08 | INFO | BI | Inspecting customers
+2026-07-08 21:07:08 | INFO | BI |   Columns: ['CustomerID', 'Name', 'Region', 'JoinDate']
+2026-07-08 21:07:08 | INFO | BI |   Shape:   201 rows x 4 columns
+2026-07-08 21:07:08 | DEBUG | BI | 
+   CustomerID           Name   Region    JoinDate
+0        1000   Robert Gomez     West  2024-02-25
+1        1001     John Silva     East  2020-12-01
+2        1002  Mark Marshall  Central  2020-08-08
+3        1003  David Brennan    North  2020-05-21
+4        1004  Kerry Collins    North  2023-09-12
+
+2026-07-08 21:07:08 | INFO | BI | Inspecting products
+2026-07-08 21:07:08 | INFO | BI |   Columns: ['ProductID', 'ProductName', 'Category', 'UnitPrice']
+2026-07-08 21:07:08 | INFO | BI |   Shape:   100 rows x 4 columns
+2026-07-08 21:07:08 | DEBUG | BI | 
+   ProductID           ProductName     Category  UnitPrice
+0       2000    Electronics-Signal  Electronics     969.31
+1       2001     Electronics-Boost  Electronics     412.35
+2       2002         Office-Family       Office     866.00
+3       2003  Electronics-Training  Electronics     385.18
+4       2004          Office-Where       Office     927.25
+
+2026-07-08 21:07:08 | INFO | BI | Inspecting sales
+2026-07-08 21:07:08 | INFO | BI |   Columns: ['TransactionID', 'SaleDate', 'CustomerID', 'ProductID', 'StoreID', 'CampaignID', 'SaleAmount']
+2026-07-08 21:07:08 | INFO | BI |   Shape:   2400 rows x 7 columns
+2026-07-08 21:07:08 | DEBUG | BI | 
+   TransactionID    SaleDate  CustomerID  ProductID  StoreID  CampaignID SaleAmount
+0              1  2025-01-09        1020       2023      401         0.0     643.02
+1              2  2024-07-10        1034       2091      404         2.0     529.24
+2              3  2025-03-22        1087       2035      403         3.0    4313.72
+3              4  2024-12-27        1186       2015      404         NaN    1275.85
+4              5  2025-04-21        1049       2005      402         0.0    1739.64
+
+2026-07-08 21:07:08 | INFO | BI | CALL a function to check data quality of each dataset........
+2026-07-08 21:07:08 | INFO | BI | Quality check: customers
+2026-07-08 21:07:08 | INFO | BI |   Total missing values: 0
+2026-07-08 21:07:08 | INFO | BI |   Duplicate rows: 1
+2026-07-08 21:07:08 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-08 21:07:08 | INFO | BI | Quality check: products
+2026-07-08 21:07:08 | INFO | BI |   Total missing values: 0
+2026-07-08 21:07:08 | INFO | BI |   Duplicate rows: 0
+2026-07-08 21:07:08 | INFO | BI | Quality check: sales
+2026-07-08 21:07:08 | INFO | BI |   Total missing values: 193
+2026-07-08 21:07:08 | WARNING | BI |   Missing by column:
+CampaignID    193
+dtype: int64
+2026-07-08 21:07:08 | INFO | BI |   Duplicate rows: 0
+2026-07-08 21:07:08 | INFO | BI | CALL a function to summarize numeric columns in each dataset........
+2026-07-08 21:07:08 | INFO | BI | Numeric summary: customers
+2026-07-08 21:07:08 | INFO | BI | 
+       CustomerID
+count      201.00
+mean      1099.03
+std         58.12
+min       1000.00
+25%       1049.00
+50%       1099.00
+75%       1149.00
+max       1199.00
+2026-07-08 21:07:08 | INFO | BI | Numeric summary: products
+2026-07-08 21:07:08 | INFO | BI | 
+       ProductID  UnitPrice
+count     100.00     100.00
+mean     2049.50     507.77
+std        29.01     290.80
+min      2000.00      13.51
+25%      2024.75     255.53
+50%      2049.50     496.39
+75%      2074.25     771.28
+max      2099.00     976.44
+2026-07-08 21:07:08 | INFO | BI | Numeric summary: sales
+2026-07-08 21:07:08 | INFO | BI | 
+       TransactionID  CustomerID  ProductID  StoreID  CampaignID
+count        2400.00     2400.00    2400.00  2400.00     2207.00
+mean         1200.50     1086.75    2049.07   402.53        1.46
+std           692.96       57.32      28.67     1.13        1.12
+min             1.00     1000.00    2000.00   401.00        0.00
+25%           600.75     1034.00    2023.00   402.00        0.00
+50%          1200.50     1079.00    2046.00   403.00        1.00
+75%          1800.25     1132.00    2074.00   404.00        2.00
+max          2400.00     1199.00    2099.00   404.00        3.00
+2026-07-08 21:07:08 | INFO | BI | CALL a function to plot price distribution........
+2026-07-08 21:07:08 | INFO | BI | Plotting price distribution
+2026-07-08 21:07:09 | INFO | BI | Price distribution chart created
+2026-07-08 21:07:09 | INFO | BI | CALL a function to plot sales trend over time........
+2026-07-08 21:07:09 | INFO | BI | Plotting sales trend over time
+2026-07-08 21:07:09 | INFO | BI | Creating chart: Total Sales by Month
+2026-07-08 21:07:09 | INFO | BI | Sales trend chart created
+2026-07-08 21:07:09 | INFO | BI | Plotting sales by product
+2026-07-08 21:07:09 | INFO | BI | Plotting sales distribution
+2026-07-08 21:07:09 | INFO | BI | CALL a function to summarize the datasets........
+2026-07-08 21:07:09 | INFO | BI | ========================
+2026-07-08 21:07:09 | INFO | BI | SUMMARY
+2026-07-08 21:07:09 | INFO | BI | ========================
+2026-07-08 21:07:09 | INFO | BI | Customers:  201 rows, 4 columns
+2026-07-08 21:07:09 | INFO | BI | Products:   100 rows, 4 columns
+2026-07-08 21:07:09 | INFO | BI | Sales:      2400 rows, 7 columns
+2026-07-08 21:07:09 | INFO | BI | ========================
+2026-07-08 21:07:09 | INFO | BI | ANALYST NOTES:
+2026-07-08 21:07:09 | INFO | BI | Any inconsistent data should be reviewed later.
+2026-07-08 21:07:09 | INFO | BI | Any duplicate rows should be reviewed later.
+2026-07-08 21:07:09 | INFO | BI | Cleaning and data preparation will be done in a later module.
+2026-07-08 21:07:09 | INFO | BI | ========================
+2026-07-08 21:07:09 | INFO | BI | CALL a function to show charts........
+2026-07-08 21:07:21 | INFO | BI | Workflow complete
+2026-07-08 21:07:21 | INFO | BI | CLOSE chart windows to continue.
+2026-07-08 21:07:21 | INFO | BI | Terminate this process with CTRL+c as needed.
+2026-07-08 21:07:21 | INFO | BI | ========================
+2026-07-08 21:07:21 | INFO | BI | Executed successfully!
+2026-07-08 21:07:21 | INFO | BI | ========================
+2026-07-08 21:13:51 | INFO | BI | === RUN START ===
+2026-07-08 21:13:51 | INFO | BI | project=BI
+2026-07-08 21:13:51 | INFO | BI | repo_dir=bintel-02-mining
+2026-07-08 21:13:51 | INFO | BI | python=3.14.6
+2026-07-08 21:13:51 | INFO | BI | os=Windows 10
+2026-07-08 21:13:51 | INFO | BI | shell=powershell
+2026-07-08 21:13:51 | INFO | BI | cwd=.
+2026-07-08 21:13:51 | INFO | BI | github_actions=False
+2026-07-08 21:13:51 | INFO | BI | ========================
+2026-07-08 21:13:51 | INFO | BI | START main()
+2026-07-08 21:13:51 | INFO | BI | ========================
+2026-07-08 21:13:51 | INFO | BI | Raw data:  = data\raw
+2026-07-08 21:13:51 | INFO | BI | Customers: = data\raw\customers_data.csv
+2026-07-08 21:13:51 | INFO | BI | Products:  = data\raw\products_data.csv
+2026-07-08 21:13:51 | INFO | BI | Sales:     = data\raw\sales_data.csv
+2026-07-08 21:13:51 | INFO | BI | CALL a function to load each dataset.............
+2026-07-08 21:13:51 | INFO | BI | Loading customers from data\raw\customers_data.csv
+2026-07-08 21:13:51 | INFO | BI | Loaded: 201 rows, 4 columns
+2026-07-08 21:13:51 | INFO | BI | Loading products from data\raw\products_data.csv
+2026-07-08 21:13:51 | INFO | BI | Loaded: 100 rows, 4 columns
+2026-07-08 21:13:51 | INFO | BI | Loading sales from data\raw\sales_data.csv
+2026-07-08 21:13:51 | INFO | BI | Loaded: 2400 rows, 7 columns
+2026-07-08 21:13:51 | INFO | BI | CALL a function to inspect each dataset..........
+2026-07-08 21:13:51 | INFO | BI | Inspecting customers
+2026-07-08 21:13:51 | INFO | BI |   Columns: ['CustomerID', 'Name', 'Region', 'JoinDate']
+2026-07-08 21:13:51 | INFO | BI |   Shape:   201 rows x 4 columns
+2026-07-08 21:13:51 | DEBUG | BI | 
+   CustomerID           Name   Region    JoinDate
+0        1000   Robert Gomez     West  2024-02-25
+1        1001     John Silva     East  2020-12-01
+2        1002  Mark Marshall  Central  2020-08-08
+3        1003  David Brennan    North  2020-05-21
+4        1004  Kerry Collins    North  2023-09-12
+
+2026-07-08 21:13:51 | INFO | BI | Inspecting products
+2026-07-08 21:13:51 | INFO | BI |   Columns: ['ProductID', 'ProductName', 'Category', 'UnitPrice']
+2026-07-08 21:13:51 | INFO | BI |   Shape:   100 rows x 4 columns
+2026-07-08 21:13:51 | DEBUG | BI | 
+   ProductID           ProductName     Category  UnitPrice
+0       2000    Electronics-Signal  Electronics     969.31
+1       2001     Electronics-Boost  Electronics     412.35
+2       2002         Office-Family       Office     866.00
+3       2003  Electronics-Training  Electronics     385.18
+4       2004          Office-Where       Office     927.25
+
+2026-07-08 21:13:51 | INFO | BI | Inspecting sales
+2026-07-08 21:13:51 | INFO | BI |   Columns: ['TransactionID', 'SaleDate', 'CustomerID', 'ProductID', 'StoreID', 'CampaignID', 'SaleAmount']
+2026-07-08 21:13:51 | INFO | BI |   Shape:   2400 rows x 7 columns
+2026-07-08 21:13:51 | DEBUG | BI | 
+   TransactionID    SaleDate  CustomerID  ProductID  StoreID  CampaignID SaleAmount
+0              1  2025-01-09        1020       2023      401         0.0     643.02
+1              2  2024-07-10        1034       2091      404         2.0     529.24
+2              3  2025-03-22        1087       2035      403         3.0    4313.72
+3              4  2024-12-27        1186       2015      404         NaN    1275.85
+4              5  2025-04-21        1049       2005      402         0.0    1739.64
+
+2026-07-08 21:13:51 | INFO | BI | CALL a function to check data quality of each dataset........
+2026-07-08 21:13:51 | INFO | BI | Quality check: customers
+2026-07-08 21:13:51 | INFO | BI |   Total missing values: 0
+2026-07-08 21:13:51 | INFO | BI |   Duplicate rows: 1
+2026-07-08 21:13:51 | WARNING | BI |   1 duplicate row(s) found - review before loading to warehouse
+2026-07-08 21:13:51 | INFO | BI | Quality check: products
+2026-07-08 21:13:51 | INFO | BI |   Total missing values: 0
+2026-07-08 21:13:51 | INFO | BI |   Duplicate rows: 0
+2026-07-08 21:13:51 | INFO | BI | Quality check: sales
+2026-07-08 21:13:51 | INFO | BI |   Total missing values: 193
+2026-07-08 21:13:51 | WARNING | BI |   Missing by column:
+CampaignID    193
+dtype: int64
+2026-07-08 21:13:51 | INFO | BI |   Duplicate rows: 0
+2026-07-08 21:13:51 | INFO | BI | CALL a function to summarize numeric columns in each dataset........
+2026-07-08 21:13:51 | INFO | BI | Numeric summary: customers
+2026-07-08 21:13:51 | INFO | BI | 
+       CustomerID
+count      201.00
+mean      1099.03
+std         58.12
+min       1000.00
+25%       1049.00
+50%       1099.00
+75%       1149.00
+max       1199.00
+2026-07-08 21:13:51 | INFO | BI | Numeric summary: products
+2026-07-08 21:13:51 | INFO | BI | 
+       ProductID  UnitPrice
+count     100.00     100.00
+mean     2049.50     507.77
+std        29.01     290.80
+min      2000.00      13.51
+25%      2024.75     255.53
+50%      2049.50     496.39
+75%      2074.25     771.28
+max      2099.00     976.44
+2026-07-08 21:13:51 | INFO | BI | Numeric summary: sales
+2026-07-08 21:13:51 | INFO | BI | 
+       TransactionID  CustomerID  ProductID  StoreID  CampaignID
+count        2400.00     2400.00    2400.00  2400.00     2207.00
+mean         1200.50     1086.75    2049.07   402.53        1.46
+std           692.96       57.32      28.67     1.13        1.12
+min             1.00     1000.00    2000.00   401.00        0.00
+25%           600.75     1034.00    2023.00   402.00        0.00
+50%          1200.50     1079.00    2046.00   403.00        1.00
+75%          1800.25     1132.00    2074.00   404.00        2.00
+max          2400.00     1199.00    2099.00   404.00        3.00
+2026-07-08 21:13:51 | INFO | BI | CALL a function to plot price distribution........
+2026-07-08 21:13:51 | INFO | BI | Plotting price distribution
+2026-07-08 21:13:51 | INFO | BI | Price distribution chart created
+2026-07-08 21:13:51 | INFO | BI | CALL a function to plot sales trend over time........
+2026-07-08 21:13:51 | INFO | BI | Plotting sales trend over time
+2026-07-08 21:13:51 | INFO | BI | Creating chart: Total Sales by Month
+2026-07-08 21:13:51 | INFO | BI | Sales trend chart created
+2026-07-08 21:13:51 | INFO | BI | Plotting sales by product
+2026-07-08 21:13:52 | INFO | BI | Plotting sales distribution
+2026-07-08 21:13:52 | INFO | BI | CALL a function to summarize the datasets........
+2026-07-08 21:13:52 | INFO | BI | ========================
+2026-07-08 21:13:52 | INFO | BI | SUMMARY
+2026-07-08 21:13:52 | INFO | BI | ========================
+2026-07-08 21:13:52 | INFO | BI | Customers:  201 rows, 4 columns
+2026-07-08 21:13:52 | INFO | BI | Products:   100 rows, 4 columns
+2026-07-08 21:13:52 | INFO | BI | Sales:      2400 rows, 7 columns
+2026-07-08 21:13:52 | INFO | BI | ========================
+2026-07-08 21:13:52 | INFO | BI | ANALYST NOTES:
+2026-07-08 21:13:52 | INFO | BI | Any inconsistent data should be reviewed later.
+2026-07-08 21:13:52 | INFO | BI | Any duplicate rows should be reviewed later.
+2026-07-08 21:13:52 | INFO | BI | Cleaning and data preparation will be done in a later module.
+2026-07-08 21:13:52 | INFO | BI | ========================
+2026-07-08 21:13:52 | INFO | BI | CALL a function to show charts........
+2026-07-08 21:13:59 | INFO | BI | Workflow complete
+2026-07-08 21:13:59 | INFO | BI | CLOSE chart windows to continue.
+2026-07-08 21:13:59 | INFO | BI | Terminate this process with CTRL+c as needed.
+2026-07-08 21:13:59 | INFO | BI | ========================
+2026-07-08 21:13:59 | INFO | BI | Executed successfully!
+2026-07-08 21:13:59 | INFO | BI | ========================

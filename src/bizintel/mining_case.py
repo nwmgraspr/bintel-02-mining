@@ -204,7 +204,8 @@ def plot_sales_trend(df_sales: pd.DataFrame) -> None:
     )
 
     LOG.info("Sales trend chart created")
-    
+
+
 def plot_sales_by_product(df_sales: pd.DataFrame) -> None:
     """Plot total sales by product."""
 
@@ -217,16 +218,18 @@ def plot_sales_by_product(df_sales: pd.DataFrame) -> None:
         df.groupby("ProductID")["SaleAmount"]
         .sum()
         .sort_values(ascending=False)
+        .head(10)
     )
 
-    _, ax = plt.subplots(figsize=(10, 5))
+    _, ax = plt.subplots(figsize=(12, 6))
     sales.plot(kind="bar", ax=ax, color="cornflowerblue")
 
     ax.set_title("Total Sales by Product")
     ax.set_xlabel("Product ID")
     ax.set_ylabel("Sales Amount ($)")
-
+    plt.xticks(rotation=45, ha="right")
     plt.tight_layout()
+
 
 def plot_sales_pie(df_sales: pd.DataFrame) -> None:
     """Plot sales distribution by product."""
@@ -237,8 +240,7 @@ def plot_sales_pie(df_sales: pd.DataFrame) -> None:
     df["SaleAmount"] = pd.to_numeric(df["SaleAmount"], errors="coerce")
 
     sales = (
-        df.groupby("ProductID")["SaleAmount"]
-        .sum()
+        df.groupby("ProductID")["SaleAmount"].sum().sort_values(ascending=False).head(8)
     )
 
     _, ax = plt.subplots(figsize=(8, 8))
@@ -251,6 +253,7 @@ def plot_sales_pie(df_sales: pd.DataFrame) -> None:
 
     ax.set_title("Sales Distribution by Product")
     plt.tight_layout()
+
 
 # === Section 2.3 DEFINE A SUMMARIZE FUNCTION ===
 
@@ -341,13 +344,15 @@ def main() -> None:
     summarize_numeric(df_customers, "customers")
     summarize_numeric(df_products, "products")
     summarize_numeric(df_sales, "sales")
-   
+
     LOG.info("CALL a function to plot price distribution........")
     plot_price_distribution(df_products)
 
     LOG.info("CALL a function to plot sales trend over time........")
     plot_sales_trend(df_sales)
+    plot_sales_by_product(df_sales)
 
+    plot_sales_pie(df_sales)
     LOG.info("CALL a function to summarize the datasets........")
     summarize(df_customers, df_products, df_sales)
 
