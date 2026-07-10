@@ -82,12 +82,14 @@ git clone https://github.com/nwmgraspr/bintel-02-mining
 cd bintel-02-mining
 code .
 ```
+## Custom Project
+```shell
+git clone https://github.com/nwmgraspr/bintel-02-mining
 
+cd bizintel.mining_ecommerce
+code .
+```
 ### In a VS Code terminal
-
-These are listed for convenience.
-For best results, follow the detailed instructions in
-[pro-analytics-02 guide](https://denisecase.github.io/pro-analytics-02/).
 
 ```shell
 uv self update
