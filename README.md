@@ -103,12 +103,12 @@ uvx pre-commit run --all-files
 # repeat if changes were made
 uvx pre-commit run --all-files
 
-# run the example module
-uv run python -m bizintel.mining_case
+# run custom project module
+uv run python -m bizintel.mining_ecommerce
 
 # run common chores
-uv run ruff format .
-uv run ruff check . --fix
+uv run ruff format
+uv run ruff check --fix
 uv run python -m pyright
 uv run python -m pytest
 uv run python -m zensical build
@@ -139,29 +139,54 @@ Press `Ctrl+c` (both keys together) or `Ctrl+Z` then `Enter` on Windows.
 ## Example Output (Remove this Section after You Verify)
 
 ```shell
-| INFO | ML | ========================
-| INFO | ML | Executed successfully!
-| INFO | ML | ========================
+0 01:02:54 | INFO | BI | Quality check: customers
+2026-07-10 01:02:54 | INFO | BI |   Total missing values: 0
+2026-07-10 01:02:54 | INFO | BI |   Duplicate rows: 0
+2026-07-10 01:02:54 | INFO | BI | Quality check: orders
+2026-07-10 01:02:54 | INFO | BI |   Total missing values: 0
+2026-07-10 01:02:54 | INFO | BI |   Duplicate rows: 0
+2026-07-10 01:02:54 | INFO | BI | Quality check: web
+2026-07-10 01:02:54 | INFO | BI |   Total missing values: 0
+2026-07-10 01:02:54 | INFO | BI |   Duplicate rows: 0
+2026-07-10 01:02:54 | INFO | BI | Numeric summary: orders
+2026-07-10 01:02:54 | INFO | BI |
+       OrderAmount
+count        10.00
+mean        115.75
+std          90.41
+min          25.00
+25%          48.75
+50%          94.99
+75%         143.19
+max         310.25
+2026-07-10 01:02:54 | INFO | BI | Plotting order distribution
+2026-07-10 01:02:56 | INFO | BI | Plotting revenue trend
+2026-07-10 01:02:56 | INFO | BI | Creating chart: Monthly Revenue Trend
+2026-07-10 01:02:57 | INFO | BI | Plotting engagement vs spending
+2026-07-10 01:02:57 | INFO | BI | ========================
+2026-07-10 01:02:57 | INFO | BI | SUMMARY
+2026-07-10 01:02:57 | INFO | BI | ========================
+2026-07-10 01:02:57 | INFO | BI | Customers: (8, 5)
+2026-07-10 01:02:57 | INFO | BI | Orders:    (10, 5)
+2026-07-10 01:02:57 | INFO | BI | Web:       (10, 5)
+2026-07-10 01:03:03 | INFO | BI | Done.
 ```
 
 ## Findings and Visuals
+Order Amount Distribution histogram is created to understand customer purchasing patterns. This helps identify typical order sizes and variation in spending behavior. Revenue Trend Analysis: Monthly revenue is calculated and displayed using a line chart. This reveals growth patterns, seasonal changes, and overall sales performance. Customer Engagement vs. Spending Analysis Website activity data is combined with order history. A scatter plot evaluates whether customers who spend more time on the website also generate higher revenue.
 
-Take screenshots of your charts and provide them here with a discussion.
-In Markdown, display a figure using:
-an exclamation mark immediately followed by square brackets containing a useful caption
-immediately followed by parentheses containing the relative path to your figure.
+## Processes
+The step is data inspection and quality analysis. Each dataset is loaded into a pandas DataFrame and examined for:
+Dataset size (rows and columns) Column names and data types Missing values Duplicate records Basic data quality issues
+This step ensures that the data is reliable before performing analysis. After validation, the project performs data preparation and transformation. Key transformations include: Converting order amounts into numeric values. Aggregating sales data by month to identify revenue patterns. Combining customer purchase data with web activity data to analyze relationships between engagement and spending.
 
-In your custom project:
+# Custom Project Screenshots
 
-- your figures and narrative should reflect your work
-- this `README.md` should include your commands, process, and visuals
-- `docs/index.md` should include your narrative
+![Engagement VS Spending](./docs/images/Figure_3.png)
 
-Replace these placeholders with screenshots from your own project run:
+![Monthly Revenue Trend](./docs/images/Figure_4.png)
 
-![Total Sales by Region](./docs/images/Figure_1.png)
-
-![Total Sales by Product Category](./docs/images/Figure_2.png)
+![Order Amount Distribution](./docs/images/Figure_5.png)
 
 ## Project Documentation
 
